@@ -16,6 +16,7 @@ describe Client do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
+	it { should respond_to(:trainer) }
   
   describe "When name is not present" do
     before { @client.name = '' }

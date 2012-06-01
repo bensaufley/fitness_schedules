@@ -13,6 +13,7 @@ describe Trainer do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:clients) }
   
   describe "When name is not present" do
     before { @trainer.name = '' }
