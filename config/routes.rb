@@ -1,5 +1,5 @@
 FitnessSchedules::Application.routes.draw do
-  get "trainers/new"
+  resources :trainers
 
   get "static_pages/home"
   
