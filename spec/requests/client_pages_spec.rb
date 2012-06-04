@@ -17,7 +17,7 @@ describe 'Client pages' do
 		
 		describe 'with invalid information' do
 			it 'should not create a user' do
-		  	expect { click_button submit }.not_to change(:Client, count)
+		  	expect { click_button submit }.not_to change(Client, :count)
 		  end
 		end
 		
@@ -30,7 +30,7 @@ describe 'Client pages' do
 			end
 			
 			it 'should create a user' do
-				expect { click_button submit }.to change(:Client, count).by(1)
+				expect { click_button submit }.to change(Client, :count).by(1)
 			end
 		end
 	end

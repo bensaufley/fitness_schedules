@@ -1,10 +1,10 @@
-<% if @trainer.errors.any? %>
+<% if user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
-      The form contains <%= pluralize(@trainer.errors.count, "error") %>.
+      The form contains <%= pluralize(user.errors.count, "error") %>.
     </div>
     <ul>
-    <% @trainer.errors.full_messages.each do |msg| %>
+    <% user.errors.full_messages.each do |msg| %>
     	<% unless msg.include? 'digest' %>
     		<li>* <%= msg %> </li> 
     	<% end %>
