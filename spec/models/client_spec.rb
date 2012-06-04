@@ -65,6 +65,12 @@ describe Client do
       it { should_not == client_for_invalid_password }
       specify { client_for_invalid_password.should be_false }
     end
+    
+    describe "when assigning trainer id" do
+    	before { @client.trainer_id = 1 } 
+    	it {should be_valid }
+    end
+    
   end
   
     

@@ -1,7 +1,6 @@
 FitnessSchedules::Application.routes.draw do
   resources :trainers
-
-  get "static_pages/home"
+  resources :clients
   
   root to: "static_pages#home"
   # The priority is based upon order of creation:
