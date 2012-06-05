@@ -1,6 +1,9 @@
 FitnessSchedules::Application.routes.draw do
   resources :trainers
   resources :clients
+  resources :sessions
+  
+  match '/signin', to: "sessions#new"
   
   root to: "static_pages#home"
   # The priority is based upon order of creation:
