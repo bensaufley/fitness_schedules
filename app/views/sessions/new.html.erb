@@ -1,9 +1,9 @@
 <%= provide(:title, "Sign in") %>
 
-<%= select_tag "@user_type", options_for_select(["Trainer", "Client"]) %>
-
 <%= form_for(:session, url: sessions_path) do |f| %>
 
+	<%= select_tag "user_type", options_for_select(["Trainer", "Client"]) %>
+	
 	<%= f.label :email %>
 	<%= f.text_field :email %>
 	
