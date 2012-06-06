@@ -62,5 +62,24 @@ describe 'Authentication Pages' do
 		end
 	end
 	
+	describe 'authorization' do
+	
+		describe 'for not-signed-in users' do
+			let(:client) { FactoryGirl.create(:client) }
+			let(:trainer) { FactoryGirl.create(:trainer) }
+			
+			describe 'in the Trainers controller' do
+				before { visit trainer_path(trainer) }
+				it { should have_selector('title', text: 'Sign in') }
+			end
+			
+			describe 'in the Clients controller' do
+				before { visit client_path(client) }
+				it { should have_selector('title', text: 'Sign in') }
+			end
+		end
+	end
+	
+	
 end	
 		

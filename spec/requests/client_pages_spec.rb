@@ -6,7 +6,10 @@ describe 'Client pages' do
 	
 	describe 'profile page' do
 		let(:client) { FactoryGirl.create(:client) }
-		before { visit client_path(client) }
+		before do
+			sign_in_client(client)
+			visit client_path(client)
+		end
 		
 		it { should have_selector('title', text: client.name) }
 	end
