@@ -34,6 +34,12 @@ describe 'Authentication Pages' do
 		
 			it { should have_selector('title', text: trainer.name) }
 			it { should have_link('Sign out', href: signout_path) }
+			
+			describe 'after signout' do
+				before { click_link 'Sign out' }
+				
+				it { should have_link('Sign in', href: signin_path) }
+			end
 		end
 		
 		describe 'with valid client information' do
@@ -47,6 +53,12 @@ describe 'Authentication Pages' do
 			
 			it { should have_selector('title', text: client.name) }
 			it { should have_link('Sign out', href: signout_path) }
+			
+			describe 'after signout' do
+				before { click_link 'Sign out' }
+				
+				it { should have_link('Sign in', href: signin_path) }
+			end
 		end
 	end
 	
