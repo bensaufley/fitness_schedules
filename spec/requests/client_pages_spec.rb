@@ -37,4 +37,34 @@ describe 'Client pages' do
 			end
 		end
 	end
+	
+	describe 'index page' do
+		
+		describe 'for non-signed-in user' do
+			before { visit clients_path }
+			it { should have_selector('title', text: "Sign in") }
+		end
+		
+		describe 'for signed-in client' do
+			let(:client) { FactoryGirl.create(:client) }
+			before do
+				sign_in_client(client)
+				visit clients_path
+			end
+			
+			it { should have_selector('title', text: "Sign in") }
+		end
+		
+		describe 'for a signed-in trainer' do
+			let(:trainer) { FactoryGirl.create(:trainer) }
+			let!(:client) { FactoryGirl.create(:client) }
+			before do
+				sign_in_trainer(trainer)
+				visit clients_path
+			end
+			
+			it { should have_selector('title', text: "All Clients") }
+			it { should have_link(client.name, href: client_path(client)) }
+		end
+	end
 end

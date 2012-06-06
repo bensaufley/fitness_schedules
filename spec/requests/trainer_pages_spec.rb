@@ -41,6 +41,5 @@ describe 'trainer pages' do
 		end
 	
 	end
-		
-		
+
 end

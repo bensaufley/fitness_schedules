@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
-	before_filter :signed_in_user, only: [:show]
+	before_filter :signed_in_user, only: [:show, :index]
+	before_filter :trainer_only, only: [:index]
 	
   def new
   	@client = Client.new
@@ -18,5 +19,17 @@ class ClientsController < ApplicationController
   def show
   	@client = Client.find(params[:id])
   end
+  
+  def index
+  	@clients = Client.all
+  end
+  
+  private
+  	
+  	def trainer_only
+			unless current_user.class == Trainer
+  			redirect_to signin_path, notice: "Only Trainers authorized to view this list #{current_user.name}"
+  		end
+  	end
   
 end
