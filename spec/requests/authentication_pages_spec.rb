@@ -31,8 +31,9 @@ describe 'Authentication Pages' do
 				fill_in "Password", 				with: trainer.password
 				click_button "Sign in"
 			end
-			
+		
 			it { should have_selector('title', text: trainer.name) }
+			it { should have_link('Sign out', href: signout_path) }
 		end
 		
 		describe 'with valid client information' do
@@ -45,6 +46,7 @@ describe 'Authentication Pages' do
 			end
 			
 			it { should have_selector('title', text: client.name) }
+			it { should have_link('Sign out', href: signout_path) }
 		end
 	end
 	

@@ -6,12 +6,17 @@ class SessionsController < ApplicationController
 	def create
 		user = log_in_user
 		if user && user.authenticate(params[:session][:password])
-			# create new session
+			sign_in user
 			redirect_to user
 		else 
 			flash.now[:error] = "Invalid email/password combination"
 			render 'new'
 		end
+	end
+	
+	def destroy
+		sign_out user
+		redirect_to root_path
 	end
 	
 	
@@ -26,7 +31,7 @@ class SessionsController < ApplicationController
 			elsif user_type == "Client"
 				user = Client.find_by_email(params[:session][:email])
 			else
-				# Error!
+				flash.now[:error] = "User type invalid"
 				render 'new'
 			end	
 		end			
