@@ -57,14 +57,23 @@ describe 'Client pages' do
 		
 		describe 'for a signed-in trainer' do
 			let(:trainer) { FactoryGirl.create(:trainer) }
-			let!(:client) { FactoryGirl.create(:client) }
 			before do
 				sign_in_trainer(trainer)
 				visit clients_path
 			end
 			
 			it { should have_selector('title', text: "All Clients") }
-			it { should have_link(client.name, href: client_path(client)) }
+			
+			describe 'pagination' do
+				before(:all) { 30.times { FactoryGirl.create(:client) } }
+				after(:all) { Client.delete_all }
+				
+				it 'should list each client' do
+					Client.paginate(page: 1).each do |client|
+						page.should have_selector('li', text: client.name)
+					end
+				end
+			end
 		end
 	end
 end

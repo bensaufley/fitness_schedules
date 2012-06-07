@@ -21,7 +21,7 @@ class ClientsController < ApplicationController
   end
   
   def index
-  	@clients = Client.all
+  	@clients = Client.paginate(page: params[:page])
   end
   
   private
