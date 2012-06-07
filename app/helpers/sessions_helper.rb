@@ -40,4 +40,34 @@ module SessionsHelper
 		self.current_user = nil
 	end
 	
+	def signed_in_user
+  	redirect_to signin_path, notice: "Please sign in." unless signed_in?
+	end
+	
+	def trainer_only
+		unless current_user.class == Trainer
+			redirect_to signin_path, notice: "Only Trainers authorized to view this list"
+		end
+  end
+  
+  def page_owner
+  	user_type = get_model_from_params(params)
+  	redirect_to '/noauth' unless current_user == user_type.find_by_id(params[:id])  
+  end
+  
+  private
+  
+  	def get_model_from_params(params)
+  		controller = params[:controller]
+  		if controller == "trainers"
+  			Trainer
+  		elsif controller == "clients"
+  			Client
+  		else
+  			nil
+  		end
+  	end
+  	
+  	
+	
 end

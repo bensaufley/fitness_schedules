@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
 	before_filter :signed_in_user, only: [:show, :index]
 	before_filter :trainer_only, only: [:index]
+	before_filter :page_owner, only: [:show]
 	
   def new
   	@client = Client.new
@@ -23,13 +24,5 @@ class ClientsController < ApplicationController
   def index
   	@clients = Client.paginate(page: params[:page])
   end
-  
-  private
-  	
-  	def trainer_only
-			unless current_user.class == Trainer
-  			redirect_to signin_path, notice: "Only Trainers authorized to view this list #{current_user.name}"
-  		end
-  	end
   
 end

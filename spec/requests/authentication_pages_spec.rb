@@ -78,6 +78,33 @@ describe 'Authentication Pages' do
 				it { should have_selector('title', text: 'Sign in') }
 			end
 		end
+		
+		describe 'for wrong user' do
+		
+			describe 'Trainer Profile' do
+				let(:trainer) { FactoryGirl.create(:trainer) }
+				let(:wrong_trainer) { FactoryGirl.create(:trainer) }
+				before do
+					sign_in_trainer wrong_trainer
+					visit trainer_path(trainer)
+				end
+				
+				it { should have_selector('title', text: "Error: Not Authorized") }
+			
+			end
+			
+			describe 'Client Profile' do
+			let(:client) { FactoryGirl.create(:client) }
+				let(:wrong_client) { FactoryGirl.create(:client) }
+				before do
+					sign_in_client wrong_client
+					visit client_path(client)
+				end
+				
+				it { should have_selector('title', text: "Error: Not Authorized") }
+			end
+		end
+				
 	end
 	
 	
