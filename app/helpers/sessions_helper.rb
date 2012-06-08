@@ -13,18 +13,6 @@ module SessionsHelper
 	def current_user=(user)
 		@current_user = user
 	end
-	
-# 	def current_user
-# 		if @current_user
-# 			@current_user
-# 		elsif Client.find_by_id(session[:user_id])
-# 			@current_user = Client.find(session[:user_id])
-# 		elsif Trainer.find_by_id(session[:user_id])
-# 			@current_user = Trainer.find(session[:user_id])
-# 		else
-# 			nil
-# 		end
-# 	end
  
  	def current_user
  		if session[:user_class]
@@ -41,6 +29,7 @@ module SessionsHelper
 	end
 	
 	def signed_in_user
+		store_location
   	redirect_to signin_path, notice: "Please sign in." unless signed_in?
 	end
 	
@@ -67,11 +56,15 @@ module SessionsHelper
 			redirect_to '/noauth'
 		end
 	end
-	  
-#   def profile_owner
-# 		user_model = get_model_from_params(params)
-# 	  redirect_to '/noauth' unless current_user == user_model.find_by_id(params[:id])
-#   end
+	
+	def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
+  end
+
+  def store_location
+    session[:return_to] = request.fullpath
+  end  
   
   private
 		

@@ -11,4 +11,5 @@ class Trainer < ActiveRecord::Base
   validates :password_confirmation, presence: true, length: { minimum: 6 }, on: :create
   
   before_save { |trainer| trainer.email = email.downcase } 
+  
 end

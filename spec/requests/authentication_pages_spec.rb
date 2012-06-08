@@ -77,6 +77,17 @@ describe 'Authentication Pages' do
 				before { visit client_path(client) }
 				it { should have_selector('title', text: 'Sign in') }
 			end
+			
+			describe 'when attempting to visit a protected page' do
+				before do
+					visit clients_path 
+					fill_in "Email", with: trainer.email
+					fill_in "Password", with: trainer.password
+					click_button "Sign in"
+				end
+				  
+				it { should have_selector('title', text: "All Clients" ) }
+			end
 		end
 		
 		describe 'for wrong user' do
