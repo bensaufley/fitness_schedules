@@ -5,14 +5,15 @@ describe 'trainer pages' do
 	
 	describe 'profile page' do
 		let(:test_trainer) { FactoryGirl.create(:trainer) }
-		let(:test_client) { FactoryGirl.create(:client, trainer: test_trainer) }
+		let(:test_client) { FactoryGirl.create(:client) }
 		before do
+			test_trainer.clients << test_client
 			sign_in_trainer(test_trainer)
 			visit trainer_path(test_trainer)
 		end
 		
 		it { should have_selector('title', text: test_trainer.name) }
-		it { should have_content(test_trainer.clients) }
+		it { should have_link(test_client.name, href: client_path(test_client)) }
 		
 		
 	end

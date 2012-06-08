@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 	before_filter :signed_in_user, only: [:show, :index]
 	before_filter :trainer_only, only: [:index]
-	before_filter :page_owner, only: [:show]
+	before_filter :profile_owner, only: [:show]
 	
   def new
   	@client = Client.new
@@ -24,5 +24,5 @@ class ClientsController < ApplicationController
   def index
   	@clients = Client.paginate(page: params[:page])
   end
-  
+		
 end

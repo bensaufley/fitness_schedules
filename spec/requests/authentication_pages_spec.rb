@@ -104,7 +104,18 @@ describe 'Authentication Pages' do
 				it { should have_selector('title', text: "Error: Not Authorized") }
 			end
 		end
-				
+		
+		describe 'for the client.trainer client profile page' do
+			let(:client) { FactoryGirl.create(:client) }
+			let(:trainer) { FactoryGirl.create(:trainer) }
+			before do
+				trainer.clients << client
+				sign_in_trainer trainer
+				visit client_path(client)
+			end
+			
+			it { should have_selector('title', text: client.name) }
+		end
 	end
 	
 	

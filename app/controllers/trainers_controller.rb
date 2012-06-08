@@ -1,6 +1,6 @@
 class TrainersController < ApplicationController
 	before_filter :signed_in_user, only: [:show]
-	before_filter :page_owner, only: [:show]
+	before_filter :profile_owner, only: [:show]
 	
   def new
   	@trainer = Trainer.new
@@ -19,5 +19,5 @@ class TrainersController < ApplicationController
   def show
   	@trainer = Trainer.find(params[:id])
   end
-  
+  	
 end

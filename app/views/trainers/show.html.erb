@@ -1,4 +1,5 @@
 <% provide(:title, @trainer.name) %>
 <%= @trainer.name %>
-<%= link_to @trainer.clients %>
-<%= params[:controller].class %>
+<ul><% @trainer.clients.each do |client| %>
+<li><%= link_to client.name, client_path(client) %></li>
+<% end %></ul>

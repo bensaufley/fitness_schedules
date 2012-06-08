@@ -50,24 +50,40 @@ module SessionsHelper
 		end
   end
   
-  def page_owner
-  	user_type = get_model_from_params(params)
-  	redirect_to '/noauth' unless current_user == user_type.find_by_id(params[:id])  
-  end
+  def profile_owner
+ 		user_model = get_model_from_params(params)
+		profile_type = params[:controller]
+		if profile_type == "trainers"
+			redirect_to '/noauth' unless current_user == user_model.find_by_id(params[:id])
+		elsif profile_type == "clients"
+			if current_user.class == Client
+				redirect_to '/noauth' unless current_user == user_model.find_by_id(params[:id])
+			elsif current_user.class == Trainer
+				redirect_to '/noauth' unless current_user == user_model.find_by_id(params[:id]).trainer
+			else
+				redirect_to '/noauth'
+			end
+		else
+			redirect_to '/noauth'
+		end
+	end
+	  
+#   def profile_owner
+# 		user_model = get_model_from_params(params)
+# 	  redirect_to '/noauth' unless current_user == user_model.find_by_id(params[:id])
+#   end
   
   private
-  
-  	def get_model_from_params(params)
-  		controller = params[:controller]
-  		if controller == "trainers"
-  			Trainer
-  		elsif controller == "clients"
-  			Client
-  		else
-  			nil
-  		end
-  	end
-  	
-  	
-	
+		
+		def get_model_from_params(params)
+			controller = params[:controller]
+			if controller == "trainers"
+				Trainer
+			elsif controller == "clients"
+				Client
+			else
+				nil
+			end
+		end
+			
 end
