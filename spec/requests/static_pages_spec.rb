@@ -11,8 +11,9 @@ describe "Static Pages" do
     end
     
     it "Should have the header and footer" do
-      page.should have_selector('h3', content: "footer")
-      page.should have_selector('h3', content: "header")
+      page.should have_link("Sign in", href: '/signin')
+      page.should have_link("Home", href: root_path)
+      page.should have_link("The Sports Club/LA", url: "http://thesportsclubla.com")
     end
               
   end
