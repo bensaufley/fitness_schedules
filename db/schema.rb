@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120601195334) do
+ActiveRecord::Schema.define(:version => 20120613111154) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(:version => 20120601195334) do
   end
 
   add_index "clients", ["email"], :name => "index_clients_on_email", :unique => true
+
+  create_table "schedules", :force => true do |t|
+    t.date     "scheduled_date"
+    t.boolean  "rendered"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "trainers", :force => true do |t|
     t.string   "name"

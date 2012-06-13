@@ -1,4 +1,6 @@
 FitnessSchedules::Application.routes.draw do
+  get "schedules/new"
+
   resources :trainers
   resources :clients
   resources :sessions
