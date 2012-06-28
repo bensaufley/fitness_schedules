@@ -4,6 +4,7 @@ FitnessSchedules::Application.routes.draw do
   resources :trainers
   resources :clients
   resources :sessions
+  resources :schedules
   
   match '/signin', to: "sessions#new"
   match '/signout', to: "sessions#destroy", via: :delete

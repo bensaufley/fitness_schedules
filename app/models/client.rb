@@ -4,6 +4,8 @@ class Client < ActiveRecord::Base
   belongs_to :trainer
   has_many :schedules
   
+  accepts_nested_attributes_for :schedules
+  
   validates :name, presence: true, length: { maximum: 40 }
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :password_confirmation, presence: true, length: { minimum: 6 }, on: :create
