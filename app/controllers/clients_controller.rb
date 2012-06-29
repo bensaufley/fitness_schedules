@@ -25,4 +25,14 @@ class ClientsController < ApplicationController
   	@clients = Client.paginate(page: params[:page])
   end
 		
+	def update
+		@client = Client.find(params[:id])
+		if @client.update_attributes(params[:client])
+			flash[:notice] = "Successfully added schedule"
+			redirect_to @client
+		else
+			redirect_to @client
+		end
+	end
+	
 end

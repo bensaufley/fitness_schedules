@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :trainer_id
+  attr_accessible :email, :name, :password, :password_confirmation, :trainer_id, :schedules_attributes
   has_secure_password
   belongs_to :trainer
   has_many :schedules
