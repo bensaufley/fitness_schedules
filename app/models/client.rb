@@ -11,7 +11,7 @@ class Client < ActiveRecord::Base
   validates :password_confirmation, presence: true, length: { minimum: 6 }, on: :create
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-  					uniqueness: { case_sensitive: false }
+  					uniqueness: { case_sensitive: false }, on: :create
 	
 	before_save { |client| client.email = email.downcase }
 end

@@ -4,6 +4,6 @@ class Schedule < ActiveRecord::Base
   belongs_to :client
   
   validates :client_id, presence: true
-  validates :scheduled_date, presence: true
-  validates :scheduled_date, date: { after: Proc.new { Time.now } }, on: :create
+  # validates :scheduled_date, presence: true
+  # validates :scheduled_date, date: { after: Proc.new { Time.now } }, on: :create
 end

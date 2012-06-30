@@ -31,6 +31,7 @@ class ClientsController < ApplicationController
 			flash[:notice] = "Successfully added schedule"
 			redirect_to @client
 		else
+			flash[:notice] = params
 			redirect_to @client
 		end
 	end
