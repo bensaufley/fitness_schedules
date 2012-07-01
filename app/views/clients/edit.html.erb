@@ -1,0 +1,15 @@
+<% provide(:title, @client.name) %>
+<h1><%= link_to @client.name, @client %></h1>
+
+<%= render :partial => 'shared/errors', :locals => { :user => @client } %>
+    
+<%= nested_form_for @client do |f| %>
+
+	<p><%= f.link_to_add "Add Schedule", :schedules %></p>
+		
+	<%= f.fields_for :schedules do |schedule_form| %>
+		<%= schedule_form.date_select :scheduled_date %> 
+	<% end %>
+	
+	<br><%= f.submit "Create", class: 'btn btn-large btn-primary' %></br>
+<% end %>

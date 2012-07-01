@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'date'
 
 describe 'Schedule Pages' do
 
@@ -12,8 +13,8 @@ describe 'Schedule Pages' do
 		before do 
 			trainer.clients << client
 			sign_in_trainer trainer
-			visit client_path(client)
-			click_link "New Schedule"
+			visit edit_client_path(client)
+			click_link 'Add Schedule'
 		end
 		
 		let(:submit) { "Create" }
@@ -34,5 +35,25 @@ describe 'Schedule Pages' do
 			end
 		end
 	end
+	
+	describe 'Show schedule page' do
+	
+		let(:trainer) { FactoryGirl.create(:trainer) }
+		let(:client) { FactoryGirl.create(:client) }
+		let(:date) { date.strptime '1/13/2020', '%m/%d/%Y' }
+		let(:schedule) { client.schedules.create(scheduled_date: date) }
+		
+		before do
+			trainer.clients << client
+			client.schedules << schedule
+			sign_in_trainer trainer
+			visit client_path(client)
+			click_link "2020-01-13"
+		end
+		
+		it { should have_selector('title', text: '2020-01-13') }
+	
+	end
+			
 end
 		

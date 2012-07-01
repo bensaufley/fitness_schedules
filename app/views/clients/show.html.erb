@@ -1,23 +1,7 @@
 <% provide(:title, @client.name) %>
 <h1><%= yield(:title)%></h1>
 
-    <ul>
-    <% @client.errors.full_messages.each do |msg| %>
-    		<li>* <%= msg %> </li> 
-    <% end %>
-    </ul>
-
-    
-<%= nested_form_for @client do |f| %>
-	<%= f.fields_for :schedules do |schedule_form| %>
-		<%= schedule_form.date_select :scheduled_date %> 
-		<%= schedule_form.link_to_remove "Remove" %>
-	<% end %>
-	
-	<p><%= f.link_to_add "Add Schedule", :schedules %></p>
-	
-	<%= f.submit "Create", class: 'btn btn-large btn-primary' %>
-<% end %>
+<%= link_to "Add Schedule", edit_client_path(@client) %>
 
 <ul><% @client.schedules.each do |schedule| %>
 <li><%= link_to schedule.scheduled_date, schedule_path(schedule) %></li>
