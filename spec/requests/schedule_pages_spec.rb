@@ -23,6 +23,8 @@ describe 'Schedule Pages' do
 			it { should have_selector("select", id: 'new') }
 		end
 		
+			
+		
 # 		let(:submit) { "Create" }
 # 		
 # 		describe 'with invalid information' do
@@ -42,24 +44,22 @@ describe 'Schedule Pages' do
 # 		end
 	end
 	
-# 	describe 'Show schedule page' do
-# 	
-# 		let(:trainer) { FactoryGirl.create(:trainer) }
-# 		let(:client) { FactoryGirl.create(:client) }
-# 		let(:date) { date.strptime '1/13/2020', '%m/%d/%Y' }
-# 		let(:schedule) { client.schedules.create(scheduled_date: date) }
-# 		
-# 		before do
-# 			trainer.clients << client
-# 			client.schedules << schedule
-# 			sign_in_trainer trainer
-# 			visit client_path(client)
-# 			click_link "2020-01-13"
+# describe "view schedule" do
+# 			let(:trainer) { FactoryGirl.create(:trainer) }
+#   		let(:client) { FactoryGirl.create(:client) }
+# 			let(:date) { date.strptime '1/13/2020', '%m/%d/%Y' }
+# 			let(:schedule) { client.schedules.create(date: date) }
+# 			let(:exercise) { schedule.exercises.create(circuit: 1, order: 1, name: 'pullups', 
+# 																			weight_or_intensity: 'red rubber band', reps_or_duration: '8') }
+# 			before do
+# 				trainer.clients << client
+# 				sign_in_trainer trainer
+# 				visit schedule_path(schedule)
+# 			end
+# 			
+# 			it { should have_selector("td", text: "Circuit") }
+# 			it { should have_selector("td", text: "pullups") }
 # 		end
-# 		
-# 		it { should have_selector('title', text: '2020-01-13') }
-# 	
-# 	end
-			
+# 			
 end
 		

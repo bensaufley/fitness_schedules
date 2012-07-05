@@ -11,19 +11,19 @@
 	<%= f.fields_for :exercises do |exercise_form| %>
 		<%= exercise_form.label :circuit %>
 		<%= exercise_form.number_field :circuit, { min: 1, step: 1 } %>
-		
+		<br>		
 		<%= exercise_form.label :order %>
 		<%= exercise_form.number_field :order, { min: 1, step: 1 } %>
-		
+		<br>
 		<%= exercise_form.label :name %>
 		<%= exercise_form.text_field :name %>
-		
+		<br>
 		<%= exercise_form.label :weight_or_intensity, "Weight/Intensity" %>
 		<%= exercise_form.text_field :weight_or_intensity %>
-		
+		<br>
 		<%= exercise_form.label :reps_or_duration, "Reps/Duration" %>
 		<%= exercise_form.text_field :reps_or_duration %>
-		
+		<br>
 		<%= exercise_form.link_to_remove "Remove Exercise" %>
 	<% end %>
 	

@@ -1,6 +1,8 @@
 <% provide(:title, text: @schedule.scheduled_date) %>
 
-<h1>Schedule for <%= @schedule.client.name %> on <%= @schedule.scheduled_date %></h1>
+<h1>Schedule for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %> on <%= @schedule.scheduled_date %></h1>
+
+<%= link_to 'Edit Schedule', edit_schedule_path(@schedule) %>
 
 <table border="1">
 		<tr>
