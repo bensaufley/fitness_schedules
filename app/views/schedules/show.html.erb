@@ -2,4 +2,21 @@
 
 <h1>Schedule for <%= @schedule.client.name %> on <%= @schedule.scheduled_date %></h1>
 
-
+<table border="1">
+		<tr>
+			<td>Circuit</td>
+			<td>Order</td>
+			<td>Exercise</td>
+			<td>Weight or Intensity</td>
+			<td>Reps or Duration</td>
+		</tr>
+	<% @schedule.exercises.each do |exercise| %>
+  	<tr>
+    	<td><%= exercise.circuit %></td>
+    	<td><%= exercise.order %></td>
+    	<td><%= exercise.name %></td>
+    	<td><%= exercise.weight_or_intensity %></td>
+    	<td><%= exercise.reps_or_duration %></td>
+  	</tr>
+  <% end %>
+</table>
