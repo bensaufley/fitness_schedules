@@ -8,6 +8,13 @@
 				<ul class="nav pull-right">
 					<li><%= link_to "Home", root_path %></li>
 					<% if signed_in? %>
+						<% if session[:user_class] == Trainer %>
+							<li><%= link_to "Profile", trainer_path(Trainer.find(session[:user_id])) %></li>
+						<% elsif session[:user_class] == Client %>
+							<li><%= link_to "Profile", client_path(Client.find(session[:user_id])) %></li>
+						<% else %>
+							<li><%= link_to "Sign in", signin_path %></li>
+						<% end %>						
 						<li><%= link_to "Sign out", signout_path, method: "delete" %></li>
 					<% else %>
 						<li><%= link_to "Sign in", signin_path %></li>
