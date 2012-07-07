@@ -35,7 +35,7 @@ module SessionsHelper
 	
 	def trainer_only
 		unless current_user.class == Trainer
-			redirect_to signin_path, notice: "Only Trainers authorized to view this list"
+			redirect_to signin_path, notice: "Only Trainers authorized to view this page"
 		end
   end
   

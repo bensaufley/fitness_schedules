@@ -1,7 +1,9 @@
 <% provide(:title, @client.name) %>
 <h1><%= yield(:title)%></h1>
 
+<% if session[:user_class] == Trainer %>
 <%= link_to "Add Schedule", edit_client_path(@client) %>
+<% end %>
 
 <ul><% @client.schedules.each do |schedule| %>
 <li><%= link_to schedule.scheduled_date, schedule_path(schedule) %></li>

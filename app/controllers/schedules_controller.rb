@@ -1,5 +1,7 @@
 class SchedulesController < ApplicationController
-  
+  	
+  before_filter :trainer_only, only: [:edit, :update]
+  	
   def show
   	@schedule = Schedule.find(params[:id])
   end
