@@ -2,7 +2,12 @@ FitnessSchedules::Application.routes.draw do
   get "schedules/new"
 
   resources :trainers
-  resources :clients
+  resources :clients do
+  	member do
+  		get 'add_trainer'
+  		get 'remove_trainer'
+  	end
+  end
   resources :sessions
   resources :schedules do
   	member do

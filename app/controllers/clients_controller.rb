@@ -39,4 +39,16 @@ class ClientsController < ApplicationController
 		end
 	end
 	
+	def add_trainer
+		client = Client.find(params[:id])
+		current_user.clients << client
+		redirect_to client_path(client)
+	end
+	
+	def remove_trainer
+		client = Client.find(params[:id])
+		current_user.clients.delete(client)
+		redirect_to trainer_path(current_user)
+	end
+	
 end
