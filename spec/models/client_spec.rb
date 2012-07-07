@@ -68,8 +68,9 @@ describe Client do
     end
     
     describe "when assigning trainer id" do
-    	before { @client.trainer_id = 1 } 
-    	it {should be_valid }
+    	before do
+    		@client.trainer_id = 1 
+    	end.should { raise_error(ActiveModel::MassAssignmentSecurity::Error) }
     end
     
   end
