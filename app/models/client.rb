@@ -4,7 +4,7 @@ class Client < ActiveRecord::Base
   belongs_to :trainer
   has_many :schedules
   
-  accepts_nested_attributes_for :schedules
+  accepts_nested_attributes_for :schedules, allow_destroy: true
   
   validates :name, presence: true, length: { maximum: 40 }
   validates :password, presence: true, length: { minimum: 6 }, on: :create

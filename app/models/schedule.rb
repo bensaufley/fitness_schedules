@@ -4,7 +4,7 @@ class Schedule < ActiveRecord::Base
   belongs_to :client
   
   has_many :exercises
-  accepts_nested_attributes_for :exercises
+  accepts_nested_attributes_for :exercises, allow_destroy: true
   
   validates :client_id, presence: true
   validates :scheduled_date, presence: true

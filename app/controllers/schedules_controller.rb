@@ -18,4 +18,8 @@ class SchedulesController < ApplicationController
 		end
 	end
 	
+	def complete
+		@schedule = Schedule.find(params[:id])
+	end
+	
 end

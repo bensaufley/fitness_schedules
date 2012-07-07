@@ -3,6 +3,7 @@
 <h1>Schedule for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %> on <%= @schedule.scheduled_date %></h1>
 
 <%= link_to 'Edit Schedule', edit_schedule_path(@schedule) %>
+<%= link_to 'Mark as Complete', complete_schedule_path(@schedule) %>
 
 <table border="1">
 		<tr>
