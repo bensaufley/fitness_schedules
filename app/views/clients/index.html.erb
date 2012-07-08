@@ -1,7 +1,7 @@
 <% provide(:title, text: 'All Clients') %>
 
 <%= will_paginate %>
-<ul><% @clients.each do |client| %>
+<ul><% @clients.order(:name).each do |client| %>
 	<li>
 		<%= link_to client.name, client_path(client) %> | 
 			<% if client.trainer == nil %>

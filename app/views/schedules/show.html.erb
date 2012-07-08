@@ -14,7 +14,8 @@
 			<td>Weight or Intensity</td>
 			<td>Reps or Duration</td>
 		</tr>
-	<% @schedule.exercises.each do |exercise| %>
+
+	<% @schedule.exercises.order(:circuit).each do |exercise| %>
   	<tr>
     	<td><%= exercise.circuit %></td>
     	<td><%= exercise.order %></td>
