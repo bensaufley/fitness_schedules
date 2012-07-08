@@ -11,7 +11,7 @@ FitnessSchedules::Application.routes.draw do
   resources :sessions
   resources :schedules do
   	member do
-  		get 'complete'
+  		put 'complete'
   	end
   end
   

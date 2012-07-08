@@ -2,9 +2,8 @@
 
 <h1>Schedule for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %> on <%= @schedule.scheduled_date %></h1>
 
-<% if session[:user_class] == Trainer %>
+<% if session[:user_class] == Trainer && @schedule.rendered.nil? %>
 	<%= link_to 'Edit Schedule', edit_schedule_path(@schedule) %>
-	<%= link_to 'Mark as Complete', complete_schedule_path(@schedule) %>
 <% end %>
 
 <table border="1">
@@ -25,3 +24,26 @@
   	</tr>
   <% end %>
 </table>
+
+<% if @schedule.rendered.nil? %>
+	<p><h3>Indicate completion of this session</h3></p>
+	<%= form_for @schedule, :url => complete_schedule_path(@schedule) do |f| %>
+	
+		<%= f.radio_button :rendered, true %>
+		<%= f.label :rendered, "I received this training session on the scheduled date.", value: true%><br>
+		<%= f.radio_button :rendered, false %>
+		<%= f.label :rendered, "I cancelled this training session with less than 24 hours notice.", value: false %><br>
+		
+		<%= f.fields_for @schedule.client do |client_fields| %>
+			<%= client_fields.label :email %>
+			<%= client_fields.text_field :email %>
+			
+			<%= client_fields.label :password %>
+			<%= client_fields.password_field :password %>
+		<% end %>
+		
+		<%= f.submit "Submit" %>
+	
+	<% end %>
+
+<% end %>
