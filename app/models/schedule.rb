@@ -8,5 +8,5 @@ class Schedule < ActiveRecord::Base
   
   validates :client_id, presence: true
   validates :scheduled_date, presence: true
-  validates :scheduled_date, date: { after: Proc.new { Time.now } }, on: :create
+  validates :scheduled_date, date: { after: Proc.new { (Time.now.midnight - 1.minute) } }, on: :create
 end

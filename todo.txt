@@ -1,0 +1,5 @@
+* Write tests for complete action and page
+* Write tests for sorting of schedules and exercises
+* Change column :order in table :exercises to something else
+  * parse through code to change all calls to Exercise.order 
+* Date filter on schedules to allow current day

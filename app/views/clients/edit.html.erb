@@ -2,7 +2,9 @@
 <h1><%= link_to @client.name, @client %></h1>
 
 <%= render :partial => 'shared/errors', :locals => { :user => @client } %>
-    
+
+<%= Time.now %>
+
 <%= nested_form_for @client do |f| %>
 
 	<p><%= f.link_to_add "Add Schedule", :schedules %></p>
