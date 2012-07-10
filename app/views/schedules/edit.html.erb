@@ -1,6 +1,6 @@
 <% provide(:title, text: @schedule.scheduled_date) %>
 
-<h1>Schedule for <%= @schedule.client.name %> on <%= @schedule.scheduled_date %></h1>
+<h1>Schedule for <%= link_to @schedule.client.name, schedule_path(@schedule) %> on <%= @schedule.scheduled_date %></h1>
 
 <%= render :partial => 'shared/errors', :locals => { :user => @schedule } %>
 
@@ -12,8 +12,8 @@
 		<%= exercise_form.label :circuit %>
 		<%= exercise_form.number_field :circuit, { min: 1, step: 1 } %>
 		<br>		
-		<%= exercise_form.label :order %>
-		<%= exercise_form.number_field :order, { min: 1, step: 1 } %>
+		<%= exercise_form.label :ex_order, "Order" %>
+		<%= exercise_form.number_field :ex_order, { min: 1, step: 1 } %>
 		<br>
 		<%= exercise_form.label :name %>
 		<%= exercise_form.text_field :name %>

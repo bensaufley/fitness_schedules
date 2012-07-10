@@ -15,10 +15,10 @@
 			<td>Reps or Duration</td>
 		</tr>
 
-	<% @schedule.exercises.order(:circuit).each do |exercise| %>
+	<% @schedule.exercises.order(:circuit, :ex_order).each do |exercise| %>
   	<tr>
     	<td><%= exercise.circuit %></td>
-    	<td><%= exercise.order %></td>
+    	<td><%= exercise.ex_order %></td>
     	<td><%= exercise.name %></td>
     	<td><%= exercise.weight_or_intensity %></td>
     	<td><%= exercise.reps_or_duration %></td>

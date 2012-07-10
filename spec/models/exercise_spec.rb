@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Exercise do
 	before do
-		@exercise = Exercise.new(circuit: 1, order: 1, name: "pullups", 
+		@exercise = Exercise.new(circuit: 1, ex_order: 1, name: "pullups", 
 														 weight_or_intensity: "50lbs assist", reps_or_duration: "8", schedule_id: 1)
 	end
 
@@ -10,7 +10,7 @@ describe Exercise do
 	
 		it { should be_valid }
 		it { should respond_to(:circuit) }
-		it { should respond_to(:order) }
+		it { should respond_to(:ex_order) }
 		it { should respond_to(:name) }
 		it { should respond_to(:weight_or_intensity) }
 		it { should respond_to(:reps_or_duration) }

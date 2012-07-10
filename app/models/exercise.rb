@@ -1,5 +1,5 @@
 class Exercise < ActiveRecord::Base
-  attr_accessible :circuit, :name, :order, :reps_or_duration, :schedule_id, :weight_or_intensity
+  attr_accessible :circuit, :name, :ex_order, :reps_or_duration, :schedule_id, :weight_or_intensity
   
   belongs_to :schedule
   
