@@ -5,13 +5,16 @@ describe 'Client pages' do
 	subject { page }
 	
 	describe 'profile page' do
-		let(:client) { FactoryGirl.create(:client) }
+		let!(:client) { FactoryGirl.create(:client) }
+		let(:schedule) { client.schedules.create(scheduled_date: (Date.today + 1)) }
 		before do
 			sign_in_client(client)
 			visit client_path(client)
 		end
 		
 		it { should have_selector('title', text: client.name) }
+		it { should have_link(schedule.scheduled_date.strftime("%d %b %Y"), href: schedule_path(schedule)) }
+		
 	end
 	
 	describe 'new client page' do
@@ -73,11 +76,29 @@ describe 'Client pages' do
 				after(:all) { Client.delete_all }
 				
 				it 'should list each client' do
-					Client.paginate(page: 1).each do |client|
+					Client.order(:name).paginate(page: 1).each do |client|
 						page.should have_selector('li', text: client.name)
 						page.should have_link('Train this client')
 					end
 				end
+			end
+			
+			describe 'complete schedules' do
+			  let(:trainer) { FactoryGirl.create(:trainer) }
+			  let(:client) { FactoryGirl.create(:client) }
+			  let!(:schedule) { client.schedules.create(scheduled_date: (Date.today + 1)) }
+			  before do
+          trainer.clients << client
+          client.schedules << schedule
+			    sign_in_trainer trainer
+			    visit schedule_path(schedule)
+			    fill_in "Email",      with: client.email
+			    fill_in "Password",   with: "foobar"
+			    choose("I received this training session on the scheduled date.")
+          click_button "Submit"
+          it { should have_selector('title', text: "Complete") }
+          schedule.rendered.should be_true
+        end
 			end
 		end
 	end

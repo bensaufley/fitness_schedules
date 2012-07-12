@@ -5,6 +5,39 @@ describe 'Schedule Pages' do
 
 	subject { page }
 	
+	describe "schedule order" do
+	  let!(:client) { FactoryGirl.create(:client) }
+	  let!(:schedule1) { client.schedules.create(scheduled_date: (Date.today + 1)) }
+	  let!(:schedule2) { client.schedules.create(scheduled_date: (Date.today + 2)) }
+	  before { client.schedules.should == [schedule2, schedule1] }
+	end
+	
+	describe "exercise order" do
+	  let(:client) { FactoryGirl.create(:client) }
+	  let(:schedule) { client.schedules.create(scheduled_date: (Date.today + 1)) }
+	  let(:ex1) { schedule.exercises.create( circuit: 1, ex_order: 2, name: 'pullups', weight_or_intensity: 'no assist', 
+	                                        reps_or_duration: '12') }
+ 	  let(:ex2) { schedule.exercises.create( circuit: 1, ex_order: 1, name: 'pushups', weight_or_intensity: 'no assist', 
+	                                        reps_or_duration: '12') }	
+	  let(:ex3) { schedule.exercises.create( circuit: 2, ex_order: 1, name: 'dips', weight_or_intensity: 'no assist', 
+	                                        reps_or_duration: '12') }
+ 	  let(:ex4) { schedule.exercises.create( circuit: 1, ex_order: 3, name: 'reverse pushups', weight_or_intensity: 'no assist', 
+	                                        reps_or_duration: '12') }
+	  let(:ex5) { schedule.exercises.create( circuit: 2, ex_order: 2, name: 'inverted situps', weight_or_intensity: 'no assist', 
+	                                        reps_or_duration: '12') }	  
+	  before do
+	    sign_in_client client
+	    visit schedule_path(schedule)
+	  end
+	  
+	  it { should have_selector("tbody tr:nth-child(1)", content: ex2.name) }
+	  it { should have_selector("tbody tr:nth-child(2)", content: ex1.name) }
+	  it { should have_selector("tbody tr:nth-child(3)", content: ex4.name) }
+	  it { should have_selector("tbody tr:nth-child(4)", content: ex3.name) }
+	  it { should have_selector("tbody tr:nth-child(5)", content: ex5.name) }
+	
+	end                                      
+	                                
 	describe 'New Schedule page' do
 	
 		let(:trainer) { FactoryGirl.create(:trainer) }

@@ -1,4 +1,4 @@
-<% provide(:title, text: 'All Clients') %>
+<% provide(:title, 'All Clients') %>
 
 <%= will_paginate %>
 <ul><% @clients.order(:name).each do |client| %>

@@ -1,5 +1,9 @@
-* Write tests for complete action and page
 * Write tests for sorting of schedules and exercises
-* Change column :order in table :exercises to something else
-  * parse through code to change all calls to Exercise.order 
+  * Tests on client show page failing for unknown reason. No other tests written yet. 
+  * Tests for exercise sorting are very confusing (and failing)
+* Tests for edit_client_path and edit_schedule_path
+  * Failing - javascript? 
+
 * Date filter on schedules to allow current day
+
+* paginate schedules list
