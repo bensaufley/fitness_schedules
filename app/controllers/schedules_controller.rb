@@ -1,6 +1,7 @@
 class SchedulesController < ApplicationController
   	
   before_filter :trainer_only, only: [:edit, :update]
+  before_filter :schedule_owner
   	
   def show
   	@schedule = Schedule.find(params[:id])
@@ -12,12 +13,17 @@ class SchedulesController < ApplicationController
   
   def update
 		@schedule = Schedule.find(params[:id])
-		if @schedule.update_attributes(params[:schedule])
-			flash[:notice] = "Successfully added exercise"
-			redirect_to @schedule
-		else
-			render 'edit'
-		end
+		if @schedule.rendered == nil
+      if @schedule.update_attributes(params[:schedule])
+        flash[:notice] = "Successfully added exercise"
+        redirect_to @schedule
+      else
+        render 'edit'
+      end
+    else
+      flash[:alert] = "This schedule is marked complete and may not be edited."
+      redirect_to client_path(@schedule.client)
+    end
 	end
 	
 	def complete
@@ -38,4 +44,3 @@ class SchedulesController < ApplicationController
 	
 end
 
-# 		if user && user.authenticate(params[:session][:password])

@@ -131,6 +131,29 @@ describe 'Authentication Pages' do
 		end
 	end
 	
+	describe 'for a schedule page not owned by the trainer (client.trainer)' do
+	  let(:client) { FactoryGirl.create(:client) }
+	  let(:trainer) { FactoryGirl.create(:trainer) }
+	  let(:other_client) { FactoryGirl.create(:client) }
+	  let(:schedule) { other_client.schedules.create(scheduled_date: Date.tomorrow) }
+	  
+	  describe 'client' do
+      before do
+        trainer.clients << client
+        sign_in_trainer trainer
+        visit schedule_path(schedule)
+      end
+      it { should have_content('You are not authorized to view that page') }
+    end
+  
+    describe 'trainer' do
+      before do
+        sign_in_client client
+        visit schedule_path(schedule)
+      end
+      it { should have_content('You are not authorized to view that page') }
+    end
+  end
 	
 end	
 		

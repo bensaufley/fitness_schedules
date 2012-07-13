@@ -8,6 +8,7 @@ describe 'Client pages' do
 		let!(:client) { FactoryGirl.create(:client) }
 		let(:schedule) { client.schedules.create(scheduled_date: (Date.today + 1)) }
 		before do
+		  client.schedules << schedule
 			sign_in_client(client)
 			visit client_path(client)
 		end

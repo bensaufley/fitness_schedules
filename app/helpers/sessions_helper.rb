@@ -57,6 +57,17 @@ module SessionsHelper
 		end
 	end
 	
+	def schedule_owner
+	  schedule = Schedule.find(params[:id])
+	  if current_user.class == Client
+	    redirect_to '/noauth' unless current_user == schedule.client
+	  elsif current_user.class == Trainer
+	    redirect_to '/noauth' unless current_user == schedule.client.trainer
+	  else
+	    redirect_to '/noauth'
+	  end
+	end
+	
 	def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)

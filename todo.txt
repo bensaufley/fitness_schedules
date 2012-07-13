@@ -1,9 +1,5 @@
 * Write tests for sorting of schedules and exercises
-  * Tests on client show page failing for unknown reason. No other tests written yet. 
-  * Tests for exercise sorting are very confusing (and failing)
 * Tests for edit_client_path and edit_schedule_path
   * Failing - javascript? 
-
-* Date filter on schedules to allow current day
 
 * paginate schedules list
