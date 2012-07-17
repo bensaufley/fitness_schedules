@@ -3,20 +3,24 @@
 			The Sports Club/LA - Fitness Schedules
 		</h1>
 		<nav>
-			<%= link_to "Home", root_path %>
-			<% if signed_in? %>
-				<% if session[:user_class] == Trainer %>
-					<%= link_to "Profile", trainer_path(Trainer.find(session[:user_id])) %>
-					<%= link_to "Client Index", clients_path %>
-				<% elsif session[:user_class] == Client %>
-					<%= link_to "Profile", client_path(Client.find(session[:user_id])) %>
-				<% else %>
-					<%= link_to "Sign in", signin_path %>
-				<% end %>						
-				<%= link_to "Sign out", signout_path, method: "delete" %>
-			<% else %>
-				<%= link_to "Sign in", signin_path %>
-			<% end %>
+			<%= link_to "Home", root_path, :class => (current_page?(root_path) || current_page?('/') ? "selected" : "") %>
+			<%# Added logic for styling buttons to show what page the user is on %>
+		<% if signed_in? %>
+			<% if session[:user_class] == Trainer %>
+				<%= link_to "Profile", trainer_path(Trainer.find(session[:user_id])), :class => (current_page?(trainer_path(Trainer.find(session[:user_id]))) ? "selected" : "") %>
+				<%= link_to "Client Index", clients_path %>
+			<% elsif session[:user_class] == Client %>
+				<%= link_to "Profile", client_path(Client.find(session[:user_id])), :class => (current_page?(client_path(Client.find(session[:user_id]))) ? "selected" : "") %>
+			<%# else
+				# Why a sign in link when they're already supposedly signed-in?
+				# If they're signed in, but not a Trainer or a Client, something's clearly wrong…
+				# But why provide a sign-in? Shouldn't they sign out first either way? 
+				# <%= link_to "Sign in", signin_path %>
+			<% end %>						
+			<%= link_to "Sign out", signout_path, method: "delete" %>
+		<% else %>
+			<%= link_to "Sign in", signin_path, :class => (current_page?(new_session_path) || current_page?('/signin') ? "selected" : "")  %>
+		<% end %>
 		</nav>
 </header>
 
