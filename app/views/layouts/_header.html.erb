@@ -1,28 +1,22 @@
-<header class="navbar navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="title">
+<header>
+		<h1>
 			The Sports Club/LA - Fitness Schedules
-		</div>
-		<div class="container">
-			<nav>
-				<ul class="nav pull-right">
-					<li><%= link_to "Home", root_path %></li>
-					<% if signed_in? %>
-						<% if session[:user_class] == Trainer %>
-							<li><%= link_to "Profile", trainer_path(Trainer.find(session[:user_id])) %></li>
-							<li><%= link_to "Client Index", clients_path %></li>
-						<% elsif session[:user_class] == Client %>
-							<li><%= link_to "Profile", client_path(Client.find(session[:user_id])) %></li>
-						<% else %>
-							<li><%= link_to "Sign in", signin_path %></li>
-						<% end %>						
-						<li><%= link_to "Sign out", signout_path, method: "delete" %></li>
-					<% else %>
-						<li><%= link_to "Sign in", signin_path %></li>
-					<% end %>
-				</ul>
-			</nav>
-		</div>
-	</div>
+		</h1>
+		<nav>
+			<%= link_to "Home", root_path %>
+			<% if signed_in? %>
+				<% if session[:user_class] == Trainer %>
+					<%= link_to "Profile", trainer_path(Trainer.find(session[:user_id])) %>
+					<%= link_to "Client Index", clients_path %>
+				<% elsif session[:user_class] == Client %>
+					<%= link_to "Profile", client_path(Client.find(session[:user_id])) %>
+				<% else %>
+					<%= link_to "Sign in", signin_path %>
+				<% end %>						
+				<%= link_to "Sign out", signout_path, method: "delete" %>
+			<% else %>
+				<%= link_to "Sign in", signin_path %>
+			<% end %>
+		</nav>
 </header>
 

@@ -1,0 +1,34 @@
+$orange: #f47321
+
+body, html
+	width: 100%
+	height: 100%
+	border: 0
+	margin: 0
+	padding: 0
+	overflow: auto
+
+body
+	font-size: 62.5%
+	font-weight: 200
+	font-family: 'Avenir Lt Std','century gothic',CenturyGothic,Verdana,sans-serif
+	& > header
+		font-size: 1.4em
+		position: fixed
+		top: 0
+		left: 0
+		width: 100%
+		background-color: $orange
+		border-bottom: 1px solid darken($orange,10%)
+		h1
+			text-align: center
+			text-transform: uppercase
+			color: #fff
+			font-weight: 200
+			text-shadow: 0 1px 5px darken($orange,20%)
+	#container
+		font-size: 1.6em
+		width: 940px
+		margin: 0 auto
+		padding: 20px
+	
