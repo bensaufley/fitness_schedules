@@ -26,7 +26,6 @@ describe 'Schedule Pages' do
 		it { should have_link("Add Schedule") }
 		
 		describe "Adding a schedule" do
-			before { click_link "Add Schedule" }
 			it { should have_selector("select", id: 'new') }
 		end
 		
