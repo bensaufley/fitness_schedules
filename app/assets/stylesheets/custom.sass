@@ -1,34 +1,96 @@
-$orange: #f47321
+@import "compass"
+@import "compass/reset"
 
-body, html
-	width: 100%
-	height: 100%
-	border: 0
-	margin: 0
-	padding: 0
-	overflow: auto
+$orange: #f47321
+$brown: #4c2a18
+$cream: #f0e9e2
+
+a
+	@include transition(all .05s)
 
 body
 	font-size: 62.5%
 	font-weight: 200
 	font-family: 'Avenir Lt Std','century gothic',CenturyGothic,Verdana,sans-serif
+	background-color: mix($brown,$cream)
 	& > header
 		font-size: 1.4em
 		position: fixed
 		top: 0
 		left: 0
 		width: 100%
+		height: 5.2em
 		background-color: $orange
 		border-bottom: 1px solid darken($orange,10%)
+		@include background-image(linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)))
+		@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5))
 		h1
+			font-size: 2em
+			margin: .5em 0
 			text-align: center
 			text-transform: uppercase
 			color: #fff
 			font-weight: 200
-			text-shadow: 0 1px 5px darken($orange,20%)
+			@include text-shadow(0 1px 5px darken($orange,20%))
+		nav
+			font-size: 1.2em
+			text-transform: uppercase
+			width: 960px
+			margin: 10px auto
+			a:link, a:visited
+				float: left
+				margin: 0 .5em
+				color: #fff
+				text-decoration: none
+				padding: .5em 1em
+				border: none
+				border-top: 1px solid darken($orange,15%)
+				background-color: darken($orange,5%)
+				@include background-image(linear-gradient(bottom,darken($orange,5%),$orange 80%,darken($orange,2%)))
+				@include text-shadow(0 1px 3px darken($orange,15%))
+				@include border-radius(4px)
+				@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
+				&:hover
+					background-color: lighten($orange,5%)
+					@include text-shadow(0 1px 4px #fff)
+					@include background-image(linear-gradient(bottom,$orange,lighten($orange,8%) 80%,darken($orange,1%)))
+					@include box-shadow(0 3px 8px transparentize(darken($orange,40%),.25),0 1px 3px darken($orange,20%) inset)
 	#container
 		font-size: 1.6em
 		width: 940px
-		margin: 0 auto
-		padding: 20px
+		margin: 4.55em auto 0
+		padding: 2.3em 20px 20px
+		background-color: #fff
+		@include box-shadow(0 0 15px mix($cream,$brown,25%))
 	
+	& > footer
+		width: 100%
+		background-color: #4c2a18
+		color: #fff
+		text-align: center
+		font-size: 1.2em
+		padding: 20px 0
+		.club_link, .club_link:visited
+			display: block
+			background-image: url('/assets/scla.png')
+			background-position: 50% 0
+			width: 140px
+			height: 89px
+			text-indent: 100%
+			white-space: nowrap
+			overflow: hidden
+			margin: 0 auto
+			&:hover
+				background-position: 50% -2px
+
+/* Just for testing */
+pre.debug_dump
+	width: 940px
+	padding: 20px
+	background-color: #333
+	color: #fff
+	margin: 0 auto
+	font-size: .9em
+	font-family: Monaco, monospace
+	line-height: 1.3em
+	font-smooth: none
