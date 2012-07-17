@@ -1,13 +1,13 @@
 <% provide(:title, 'All Clients') %>
 
 <%= will_paginate %>
-<ul><% @clients.order(:name).each do |client| %>
+<ul class="clients"><% @clients.order(:name).each do |client| %>
 	<li>
-		<%= link_to client.name, client_path(client) %> | 
-			<% if client.trainer == nil %>
-				<%= link_to "Train this client", add_trainer_client_path(client) %> 
-			<% elsif client.trainer == current_user %>
-				<%= link_to "Remove this client", remove_trainer_client_path(client) %>
-			<% end %>
+		<%= link_to client.name, client_path(client), :class => "client" %> | 
+	<%- if client.trainer == nil %>
+		<%= link_to "Train this client", add_trainer_client_path(client), :class => "train" %> 
+	<%- elsif client.trainer == current_user %>
+		<%= link_to "Remove this client", remove_trainer_client_path(client), :class => "remove" %>
+	<%- end %>
 	</li>
 <% end %></ul>

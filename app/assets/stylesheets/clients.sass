@@ -1,0 +1,31 @@
+@import "compass"
+
+$orange: #f47321
+$brown:  #4c2a18
+$cream:  #f0e9e2
+
+ul.clients
+	clear: both
+	display: block
+	width: 480px
+	margin: 2em auto
+	li
+		margin: .3em 0
+		padding: .3em 1em
+		@include border-radius(4px)
+		border: 1px solid #fff
+		&:hover
+			background: rgba(0,0,0,.1)
+			border: 1px solid rgba(0,0,0,.15)
+		a:link, a:visited
+			text-decoration: none
+			&.client
+				font-size: 1.2em
+				color: #333
+				&:hover
+					color: $orange
+			&.train, &.remove
+				font-size: .857em
+				color: desaturate($orange,50%)
+				&:hover
+					color: darken($orange,25%)
