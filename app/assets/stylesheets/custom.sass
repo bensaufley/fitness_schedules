@@ -34,6 +34,7 @@ body
 			@include text-shadow(0 1px 5px darken($orange,20%))
 		nav
 			font-size: 1.2em
+			height: 1em
 			text-transform: uppercase
 			width: 960px
 			margin: 0 auto
@@ -52,7 +53,7 @@ body
 				@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
 				&:hover
 					background-color: lighten($orange,5%)
-					@include text-shadow(0 1px 4px #fff)
+					@include text-shadow(0 0 3px #fff)
 					@include background-image(linear-gradient(bottom,$orange,lighten($orange,8%) 80%,darken($orange,1%)))
 					@include box-shadow(0 3px 8px transparentize(darken($orange,40%),.25),0 1px 3px darken($orange,20%) inset)
 				&.selected, &.selected:hover
@@ -61,6 +62,14 @@ body
 					@include background-image(linear-gradient(bottom,lighten($orange,5%),lighten($orange,10%) 80%,lighten($orange,8%)))
 					@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
 					@include text-shadow(0 1px 3px darken($orange,15%))
+				&.signout
+					float: right
+					font-size: .833em
+					height: 1.2em
+					line-height: 1.2em
+					color: lighten($orange,35%)
+					&:hover
+						color: #fff
 	#container
 		font-size: 1.6em
 		width: 940px
@@ -68,6 +77,14 @@ body
 		padding: 2.3em 20px 20px
 		background-color: #fff
 		@include box-shadow(0 0 15px mix($cream,$brown,25%))
+		h2
+			text-align: center
+			font-size: 1.6em
+			font-weight: 500
+			color: mix(#666,$orange,75%)
+			text-transform: uppercase
+			border-bottom: 1px solid lighten($orange,25%)
+			@include background-image(linear-gradient(bottom,lighten($orange,40%),#fff 50%))
 		div.pagination
 			display: block
 			width: auto

@@ -8,7 +8,7 @@
 		<% if signed_in? %>
 			<% if session[:user_class] == Trainer %>
 				<%= link_to "Profile", trainer_path(Trainer.find(session[:user_id])), :class => (current_page?(trainer_path(Trainer.find(session[:user_id]))) ? "selected" : "") %>
-				<%= link_to "Client Index", clients_path %>
+				<%= link_to "Client Index", clients_path, :class => (current_page?(clients_path) ? "selected" : "") %>
 			<% elsif session[:user_class] == Client %>
 				<%= link_to "Profile", client_path(Client.find(session[:user_id])), :class => (current_page?(client_path(Client.find(session[:user_id]))) ? "selected" : "") %>
 			<%# else
@@ -17,7 +17,7 @@
 				# But why provide a sign-in? Shouldn't they sign out first either way? 
 				# <%= link_to "Sign in", signin_path %>
 			<% end %>						
-			<%= link_to "Sign out", signout_path, method: "delete" %>
+			<%= link_to "Sign out", signout_path, method: "delete", :class => "signout" %>
 		<% else %>
 			<%= link_to "Sign in", signin_path, :class => (current_page?(new_session_path) || current_page?('/signin') ? "selected" : "")  %>
 		<% end %>
