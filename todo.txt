@@ -3,3 +3,10 @@
   * Failing - javascript? 
 
 * paginate schedules list
+
+* Set up :admin boolean on Trainer model
+
+* Reporting pages, accessible to admin only:
+  * Schedules by Trainer
+    * Columns for :client, :scheduled_date, :rendered
+    
