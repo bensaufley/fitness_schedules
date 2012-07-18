@@ -1,5 +1,6 @@
 @import "compass"
 @import "compass/reset"
+@import "compass/css3/pie"
 
 $orange: #f47321
 $brown: #4c2a18
@@ -15,7 +16,6 @@ body
 	background-color: mix($brown,$cream)
 	& > header
 		font-size: 1.4em
-		position: fixed
 		top: 0
 		left: 0
 		width: 100%
@@ -24,6 +24,9 @@ body
 		border-bottom: 1px solid darken($orange,10%)
 		@include background-image(linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)))
 		@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5))
+		@include pie
+		z-index: 5000
+		position: fixed
 		h1
 			font-size: 2em
 			margin: .8em 0 .2em
@@ -32,6 +35,7 @@ body
 			color: #fff
 			font-weight: 200
 			@include text-shadow(0 1px 5px darken($orange,20%))
+			@include pie
 		nav
 			font-size: 1.2em
 			height: 1em
@@ -51,6 +55,7 @@ body
 				@include text-shadow(0 1px 3px darken($orange,15%))
 				@include border-radius(4px)
 				@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
+				@include pie
 				&:hover
 					background-color: lighten($orange,5%)
 					@include text-shadow(0 0 3px #fff)
@@ -68,6 +73,7 @@ body
 					height: 1.2em
 					line-height: 1.2em
 					color: lighten($orange,35%)
+					@include pie
 					&:hover
 						color: #fff
 	#container
@@ -77,6 +83,7 @@ body
 		padding: 2.3em 20px 20px
 		background-color: #fff
 		@include box-shadow(0 0 15px mix($cream,$brown,25%))
+		@include pie
 		h2
 			text-align: center
 			font-size: 1.6em
@@ -85,6 +92,7 @@ body
 			text-transform: uppercase
 			border-bottom: 1px solid lighten($orange,25%)
 			@include background-image(linear-gradient(bottom,lighten($orange,40%),#fff 50%))
+			@include pie
 		div.pagination
 			display: block
 			width: auto
