@@ -3,11 +3,13 @@
 <%= will_paginate %>
 <ul class="clients"><% @clients.order(:name).each do |client| %>
 	<li>
-		<%= link_to client.name, client_path(client), :class => "client" %> | 
+		<%= link_to client.name, client_path(client), :class => "client" %>
+		<div class="options">
 	<%- if client.trainer == nil %>
 		<%= link_to "Train this client", add_trainer_client_path(client), :class => "train" %> 
 	<%- elsif client.trainer == current_user %>
 		<%= link_to "Remove this client", remove_trainer_client_path(client), :class => "remove" %>
 	<%- end %>
+		</div>
 	</li>
 <% end %></ul>
