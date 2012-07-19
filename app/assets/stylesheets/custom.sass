@@ -4,8 +4,8 @@ $pie-behavior: url("/assets/PIE.htc")
 @import "compass/css3/pie"
 
 $orange: #f47321
-$brown: #4c2a18
-$cream: #f0e9e2
+$brown:  #4c2a18
+$cream:  #f0e9e2
 
 a
 	@include transition(all .05s)
@@ -21,9 +21,8 @@ body
 		left: 0
 		width: 100%
 		height: 5.2em
-		background-color: $orange
 		border-bottom: 1px solid darken($orange,10%)
-		@include background-image(linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)))
+		@include background($orange linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)))
 		@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5))
 		@include pie
 		z-index: 5000
@@ -38,14 +37,19 @@ body
 			@include text-shadow(0 1px 5px darken($orange,20%))
 			@include pie
 		nav
-			font-size: 1.2em
 			height: 1em
 			text-transform: uppercase
-			width: 960px
 			margin: 0 auto
+			width: 100%
+			padding: 0 20px
+			@media screen and (min-width: 640px)
+				padding: 0
+				font-size: 1.2em
+			@media screen and (min-width: 1020px)
+				width: 960px
 			a:link, a:visited
 				float: left
-				margin: 0 .5em
+				margin: 0
 				color: #fff
 				text-decoration: none
 				padding: .5em 1em
@@ -54,9 +58,16 @@ body
 				background-color: darken($orange,5%)
 				@include background-image(linear-gradient(bottom,darken($orange,5%),$orange 80%,darken($orange,2%)))
 				@include text-shadow(0 1px 3px darken($orange,15%))
-				@include border-radius(4px)
 				@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
 				@include pie
+				@media screen and (min-width: 640px)
+					@include border-radius(4px)
+					margin: 0 .5em
+					&.signout
+						float: right
+						font-size: .833em
+						height: 1.2em
+						line-height: 1.2em
 				&:hover
 					background-color: lighten($orange,5%)
 					@include text-shadow(0 0 3px #fff)
@@ -68,23 +79,27 @@ body
 					@include background-image(linear-gradient(bottom,lighten($orange,5%),lighten($orange,10%) 80%,lighten($orange,8%)))
 					@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
 					@include text-shadow(0 1px 3px darken($orange,15%))
+					@media screen and (max-width: 640px)
+						@include border-radius (0 0 4px 4px !important) 
 				&.signout
-					float: right
-					font-size: .833em
-					height: 1.2em
-					line-height: 1.2em
 					color: lighten($orange,35%)
-					@include pie
 					&:hover
 						color: #fff
+				@media screen and (max-width: 640px)
+					&:first-child
+						@include border-radius(0 0 0 4px)
+					&:last-child
+						@include border-radius(0 0 4px 0)
 	#container
 		font-size: 1.6em
-		width: 940px
+		width: auto
 		margin: 4.55em auto 0
 		padding: 2.3em 20px 20px
 		background-color: #fff
-		@include box-shadow(0 0 15px mix($cream,$brown,25%))
-		@include pie
+		@media screen and (min-width: 1020px)
+			width: 940px
+			@include box-shadow(0 0 15px mix($cream,$brown,25%))
+			@include pie
 		h2
 			text-align: center
 			font-size: 1.6em
@@ -107,11 +122,13 @@ body
 	
 	& > footer
 		width: 100%
-		background-color: #4c2a18
+		background-color: $brown
 		color: #fff
 		text-align: center
 		font-size: 1.2em
 		padding: 20px 0
+		@include background-image(linear-gradient(bottom,$brown,lighten($brown,5%)))
+		@include pie
 		.club_link, .club_link:visited
 			display: block
 			background-image: url('/assets/scla.png')
@@ -127,7 +144,7 @@ body
 
 /* Just for testing */
 pre.debug_dump
-	width: 940px
+	width: auto
 	padding: 20px
 	background-color: #333
 	color: #fff
@@ -136,3 +153,5 @@ pre.debug_dump
 	font-family: Monaco, monospace
 	line-height: 1.3em
 	font-smooth: none
+	@media screen and (min-width: 1020px)
+		width: 940px
