@@ -1,0 +1,63 @@
+@import "compass"
+$pie-behavior: url("/assets/PIE.htc")
+@import "compass/css3/pie"
+@import "compass/utilities/general/clearfix"
+
+$orange: #f47321
+$brown:  #4c2a18
+$cream:  #f0e9e2
+
+section#signin
+	padding: 60px
+	font-size: 1.6em
+	#user_type_switch
+		width: 100%
+		@include clearfix
+		margin: 0 0 .5em
+		div
+			width: 40%
+			padding: .5em 5%
+			float: left
+			color: #333
+			text-align: center
+			cursor: default
+			@include transition(all .2s)
+			@include background(#ccc linear-gradient(bottom,#ccc,#eee))
+			@include pie
+			&#trainer
+				@include border-radius(4px 0 0 4px)
+			&#client
+				@include border-radius(0 4px 4px 0)
+			&.selected
+				color: $orange
+				@include box-shadow(0 2px 4px darken($orange,10%) inset !important)
+				@include background(lighten($orange,20%) linear-gradient(bottom,lighten($orange,20%),lighten($orange,40%)) !important)
+				@include text-shadow(0 2px 4px transparentize(darken($orange,5%),.5))
+			&:hover
+				@include background(#bbb linear-gradient(bottom,#bbb,#e9e9e9))
+				@include box-shadow(0 -2px 3px #999 inset)
+	input
+		font-size: 1em
+	select
+		font-size: 1.6em
+		width: 100%
+	@media screen and (min-width: 640px)
+		width: 480px
+		margin: 120px auto
+		padding: 0
+	label
+		clear: both
+		margin: 0 0 .5em
+		@include clearfix
+		strong
+			display: none
+			@media screen and (min-width: 640px)
+				display: block
+				float: left
+				width: 30%
+				margin: 0 2.5% 0 0
+				text-align: right
+		input
+			width: 100%
+			@media screen and (min-width: 640px)
+				width: 65%
