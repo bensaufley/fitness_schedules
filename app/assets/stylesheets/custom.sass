@@ -111,14 +111,53 @@ body
 			@include pie
 		div.pagination
 			display: block
-			width: auto
+			float: left
+			width: 100%
 			margin: .5em auto
 			font-size: .857em
+			position: relative
 			ul
+				clear: left
+				float: left
 				list-style: none
+				margin: 0
+				padding: 0
+				position: relative
+				left: 50%
+				text-align: center
 				li
+					display: block
 					float: left
-					margin: 0 1em
+					list-style: none
+					margin: 0 0 1em
+					padding: 0
+					position: relative
+					right: 50%
+					float: left
+					@media screen and (min-width: 640px)
+						margin: 0 .5em 1em
+					&:first-child a
+						@include border-radius(4px 0 0 4px)
+						border: none !important
+					&:last-child a
+						@include border-radius(0 4px 4px 0)
+					a:link, a:visited
+						text-decoration: none
+						color: $orange
+						padding: 1.5em 1em
+						line-height: 1.6em
+						@include text-shadow(0 -1px 3px #fff)
+						@include background(rgba(0,0,0,.05) linear-gradient(bottom,rgba(0,0,0,.1),rgba(0,0,0,0.0)))
+						@include pie
+						border-left: 1px solid #ccc
+						&:hover
+							@include background(rgba(0,0,0,.025))
+							@include text-shadow(0 0 5px #fff)
+							@include box-shadow(0 1px 6px #bbb)
+						@media screen and (min-width: 640px)
+							@include border-radius(4px !important)
+							border: 1px solid #ccc !important
+							padding: .5em .75em
 	
 	& > footer
 		width: 100%
@@ -153,5 +192,7 @@ pre.debug_dump
 	font-family: Monaco, monospace
 	line-height: 1.3em
 	font-smooth: none
+	white-space: pre
+	overflow-x: auto
 	@media screen and (min-width: 1020px)
 		width: 940px
