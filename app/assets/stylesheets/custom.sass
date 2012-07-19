@@ -52,7 +52,7 @@ body
 				margin: 0
 				color: #fff
 				text-decoration: none
-				padding: .5em 1em
+				padding: .75em 1.5em
 				border: none
 				border-top: 1px solid darken($orange,15%)
 				background-color: darken($orange,5%)
@@ -63,6 +63,7 @@ body
 				@media screen and (min-width: 640px)
 					@include border-radius(4px)
 					margin: 0 .5em
+					padding: .5em 1em
 					&.signout
 						float: right
 						font-size: .833em
@@ -80,6 +81,7 @@ body
 					@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
 					@include text-shadow(0 1px 3px darken($orange,15%))
 					@media screen and (max-width: 640px)
+						padding-top: 1.25em
 						@include border-radius (0 0 4px 4px !important) 
 				&.signout
 					color: lighten($orange,35%)

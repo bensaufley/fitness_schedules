@@ -21,5 +21,7 @@ A scheduling webapp to help trainers and clients collaborate and track their wor
 		-	Columns for `:client`, `:scheduled_date`, `:rendered`
 +	Styling
 	*	CSS media queries
+		-	Implemented in `custom.sass`, which covers most general cases
+		-	Implemented to a basic degree in `clients.sass`
 	*	Form styling
 	*	All styling beyond `client` and `trainer` models
