@@ -1,15 +1,15 @@
-# Fitness Schedules
+# Fitness Schedules #
 
 A scheduling webapp to help trainers and clients collaborate and track their workouts.
 
-## Models
+## Models ##
 
 - Client
 - Trainer
 - Schedule
 - Exercise
 
-## To-Do
+## To-Do ##
 
 * Write tests for sorting of schedules and exercises
 * Tests for `edit_client_path` and `edit_schedule_path`
