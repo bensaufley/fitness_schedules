@@ -18,6 +18,7 @@ class TrainersController < ApplicationController
   
   def show
   	@trainer = Trainer.find(params[:id])
+  	@clients = @trainer.clients.paginate(:page => params[:page])
   end
   	
 end

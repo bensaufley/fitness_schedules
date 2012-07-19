@@ -22,7 +22,7 @@ class ClientsController < ApplicationController
   end
   
   def index
-  	@clients = Client.paginate(page: params[:page])
+  	@clients = Client.paginate(:page => params[:page])
   end
 	
 	def edit

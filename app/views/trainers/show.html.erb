@@ -1,7 +1,3 @@
 <% provide(:title, @trainer.name) %>
 <h2><%= @trainer.name %></h2>
-<ul class="clients"><% @trainer.clients.each do |client| %>
-	<li><%= link_to client.name, client_path(client), :class => "client" %>
-		<div class="options"><%= link_to "Remove client", remove_trainer_client_path(client), :confirm => "Are you sure you wish to remove " + client.name + " as a client?", :class => "remove" %></div>
-	</li>
-<% end %></ul>
+<%= render :partial => 'clients/list_clients' %>

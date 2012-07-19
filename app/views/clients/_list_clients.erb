@@ -1,0 +1,18 @@
+<%= will_paginate @clients %>
+<ul class="clients"><% @clients.order(:name).each do |client| %>
+	<li>
+		<%= link_to client.name, client_path(client), :class => "client" %>
+		<div class="options">
+	<%- if session[:user_class] == Trainer
+			if client.trainer == nil  %>
+		<%= link_to "Train this client", add_trainer_client_path(client), :class => "train" %> 
+	<%- 	elsif client.trainer == current_user %>
+		<%= link_to "Add schedule", edit_client_path(client) %>
+		<%= link_to "Remove this client", remove_trainer_client_path(client), :confirm => "Are you sure you wish to remove " + client.name + " as a client?", :class => "remove" %>
+	<%- 	else %>
+		Client is being trained by another trainer.
+	<%-		end
+		end %>
+		</div>
+	</li>
+<% end %></ul>
