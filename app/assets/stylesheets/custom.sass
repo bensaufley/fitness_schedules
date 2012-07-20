@@ -214,7 +214,6 @@ body
 		@include pie
 		.club_link, .club_link:visited
 			display: block
-			background-image: url('/assets/scla.png')
 			background-position: 50% 0
 			width: 140px
 			height: 89px
@@ -222,12 +221,12 @@ body
 			white-space: nowrap
 			overflow: hidden
 			margin: 0 auto
+			background-image: url('/assets/scla.png')
 			&:hover
 				background-position: 50% -2px
 			@media screen and (-webkit-min-device-pixel-ratio: 1.5)
 				background-image: url('/assets/scla_2x.png')
-				background-size: 140px 89px
-
+				background-size: contain
 /* Just for testing */
 pre.debug_dump
 	width: auto
