@@ -124,6 +124,25 @@ body
 			width: 940px
 			@include box-shadow(0 0 15px mix($cream,$brown,25%))
 			@include pie
+		.alert
+			padding: 20px
+			margin: 1em 20px
+			border-style: solid
+			border-width: 1px
+			font-weight: bold
+			@include border-radius(4px)
+			@include pie
+			@media screen and (min-width: 640px)
+				width: 440px
+				margin: 1em auto
+			&.alert-error
+				color: #c54
+				border-color: #c54
+				@include background(transparentize(#c54,.8))
+			&.alert-success
+				color: #326322
+				border-color: #326322
+				@include background(transparentize(#326322,.8))
 		h2
 			text-align: center
 			font-size: 1.6em

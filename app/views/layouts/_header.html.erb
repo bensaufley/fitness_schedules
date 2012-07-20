@@ -19,7 +19,7 @@
 			<%= link_to "Sign out", signout_path, method: "delete", :class => "signout" %>
 		<% else %>
 			<%= link_to "Home", root_path, :class => (current_page?(root_path) || current_page?('/') ? "selected" : "") %>
-			<%= link_to "Sign in", signin_path, :class => (current_page?(new_session_path) || current_page?('/signin') ? "selected" : "")  %>
+			<%= link_to "Sign in", signin_path, :class => (current_page?(new_session_path) || current_page?('/signin') || current_page?('/sessions') ? "selected" : "")  %>
 		<% end %>
 		</nav>
 </header>
