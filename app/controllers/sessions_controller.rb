@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 			redirect_back_or user
 		else 
 			flash[:error] = "Invalid email/password combination"
-			redirect_to '/signin'
+			redirect_to new_session_path({ user_id: params[:session][:email], user_class: params[:user_type] })
 		end
 	end
 	
@@ -32,8 +32,8 @@ class SessionsController < ApplicationController
 			elsif user_type == "Client"
 				user = Client.find_by_email(params[:session][:email])
 			else
-				flash.now[:error] = "User type invalid"
-				render 'new'
+				flash[:error] = "User type invalid"
+				redirect_to '/signin'
 			end	
 		end			
 end

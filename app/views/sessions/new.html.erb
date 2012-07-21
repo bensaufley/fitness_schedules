@@ -2,15 +2,20 @@
 
 <section id="signin">
 	<%= form_for(:session, url: sessions_path) do |f| %>
-	
-		<%= select_tag "user_type", options_for_select(["Trainer", "Client"],'Client') %>
+    
+    <% params[:user_class] != nil ? button_select = params[:user_class].to_s : button_select = 'Client' %>	
+		<%= select_tag "user_type", options_for_select(["Trainer", "Client"], button_select) %>
 		<div id="user_type_switch">
 			<div id="trainer">Trainer</div>
 			<div id="client">Client</div>
 		</div>
 		<label for="<%= :email %>">
 			<strong>Email</strong>
-			<%= f.text_field :email, :placeholder => "Email", :type => "email" %>
+			<% if params[:user_id] %>
+			  <%= f.text_field :email, :value => params[:user_id], :type => "email" %>
+			<% else %>
+			  <%= f.text_field :email, :placeholder => "Email", :type => "email" %>
+			<% end %>
 		</label>
 		
 		<label for="<%= :password %>">
