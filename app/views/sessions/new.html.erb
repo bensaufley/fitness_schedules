@@ -2,8 +2,9 @@
 
 <section id="signin">
 	<%= form_for(:session, url: sessions_path) do |f| %>
-	
-		<%= select_tag "user_type", options_for_select(["Trainer", "Client"], (params[:user_class].to_s || 'Client')) %>
+    
+    <% params[:user_class] != nil ? button_select = params[:user_class].to_s : button_select = 'Client' %>	
+		<%= select_tag "user_type", options_for_select(["Trainer", "Client"], button_select) %>
 		<div id="user_type_switch">
 			<div id="trainer">Trainer</div>
 			<div id="client">Client</div>
