@@ -150,8 +150,16 @@ body
 			color: mix(#666,$orange,75%)
 			text-transform: uppercase
 			border-bottom: 1px solid lighten($orange,25%)
+			margin: 0 0 .8em
 			@include background-image(linear-gradient(bottom,lighten($orange,40%),#fff 50%))
 			@include pie
+		p
+			width: 480px
+			margin: 0 auto .6em
+			line-height: 1.3em
+			@media screen and (max-width: 640px)
+				width: auto
+				margin: 0 0 .6em
 		div.pagination
 			display: block
 			float: left
