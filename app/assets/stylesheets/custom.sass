@@ -34,6 +34,8 @@ body
 		@include pie
 		z-index: 5000
 		position: fixed
+		@media screen and (max-width: 640px)
+			font-size: 1.3em
 		h1
 			font-size: 2em
 			margin: .8em 0 .2em
@@ -120,6 +122,7 @@ body
 		padding: 2.8em 20px 20px
 		background-color: #fff
 		@media screen and (min-width: 1020px)
+			font-size: 1.4em
 			padding-top: 2.3em
 			width: 940px
 			@include box-shadow(0 0 15px mix($cream,$brown,25%))
