@@ -8,6 +8,9 @@
 				<% if session[:user_class] == Trainer %>
 					<%= link_to "Profile", trainer_path(Trainer.find(session[:user_id])) %>
 					<%= link_to "Client Index", clients_path %>
+					<% if current_user.admin == true %>
+					  <%= link_to "Create New Trainer", new_trainer_path %>
+					<% end %>
 				<% elsif session[:user_class] == Client %>
 					<%= link_to "Profile", client_path(Client.find(session[:user_id])) %>
 				<% else %>

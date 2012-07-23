@@ -1,6 +1,7 @@
 class TrainersController < ApplicationController
 	before_filter :signed_in_user, only: [:show]
 	before_filter :profile_owner, only: [:show]
+	before_filter :is_admin, only: [:new, :create]
 	
   def new
   	@trainer = Trainer.new
