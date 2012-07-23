@@ -155,5 +155,29 @@ describe 'Authentication Pages' do
     end
   end
 	
+	describe 'for new trainer page' do
+	  
+	  describe 'for admin' do
+	    let(:trainer) { FactoryGirl.create(:trainer) }
+	    before do 
+	      trainer.toggle!(:admin)
+	      sign_in_trainer trainer
+	      visit new_trainer_path
+	    end
+	    
+	    it { should have_selector('title', text: 'New') }
+	    end
+	    
+	  describe 'for non-admin' do
+	    let(:trainer) { FactoryGirl.create(:trainer) }
+	    before do
+	      sign_in_trainer trainer
+	      visit new_trainer_path
+	    end
+	    
+	    it { should have_content("not authorized") }
+	  end
+	
+	end
 end	
 		
