@@ -1,26 +1,11 @@
-@import "compass"
-@import "compass/reset"
-$pie-behavior: url("/assets/PIE.htc")
-@import "compass/css3/pie"
-@import "compass/utilities/general/clearfix"
+@import "shared"
 
-$orange: #f47321
-$brown:  #4c2a18
-$cream:  #f0e9e2
+// $orange_gradient: @include background ($orange linear-gradient(bottom,darken($orange,5%,lighten($orange,5%))))
 
 a
 	@include transition(all .05s)
-	&:link, &:visited
-		text-decoration: none
-		color: $orange
-		&:hover
-			color: lighten($orange,25%)
 
 body
-	font-size: 62.5%
-	&, input, select
-		font-weight: 200
-		font-family: 'Avenir Lt Std','century gothic',CenturyGothic,Verdana,sans-serif
 	background-color: mix($brown,$cream)
 	& > header
 		font-size: 1.4em
@@ -34,6 +19,8 @@ body
 		@include pie
 		z-index: 5000
 		position: fixed
+		@media screen and (max-width: 640px)
+			font-size: 1.3em
 		h1
 			font-size: 2em
 			margin: .8em 0 .2em
@@ -114,12 +101,13 @@ body
 					&:last-child
 						@include border-radius(0 0 4px 0)
 	#container
-		font-size: 1.6em
+		font-size: 1.4em
 		width: auto
 		margin: 4.55em auto 0
 		padding: 2.8em 20px 20px
 		background-color: #fff
 		@media screen and (min-width: 1020px)
+			font-size: 1.6em
 			padding-top: 2.3em
 			width: 940px
 			@include box-shadow(0 0 15px mix($cream,$brown,25%))
@@ -150,8 +138,16 @@ body
 			color: mix(#666,$orange,75%)
 			text-transform: uppercase
 			border-bottom: 1px solid lighten($orange,25%)
+			margin: 0 0 .8em
 			@include background-image(linear-gradient(bottom,lighten($orange,40%),#fff 50%))
 			@include pie
+		p
+			width: 480px
+			margin: 0 auto .6em
+			line-height: 1.3em
+			@media screen and (max-width: 640px)
+				width: auto
+				margin: 0 0 .6em
 		div.pagination
 			display: block
 			float: left
