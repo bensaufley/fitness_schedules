@@ -5,14 +5,12 @@
   <%= stylesheet_link_tag    "application-screen",	:media => "screen" %>
   <%= stylesheet_link_tag    "application-print",	:media => "print" %>
   <!--[if lte IE 8]>
-  <%= stylesheet_link_tag    "application-ie",		:media => "all" %>
+  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  	<%= stylesheet_link_tag    "application-ie",		:media => "all" %>
   <![endif]-->
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width" />
-  <!--[if lt IE 9]>
-  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
 </head>
 <body>
 <%= render 'layouts/header' %>
