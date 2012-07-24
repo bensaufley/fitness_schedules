@@ -6,3 +6,8 @@ $pie-behavior: url("/assets/PIE.htc")
 $orange: #f47321
 $brown:  #4c2a18
 $cream:  #f0e9e2
+
+@mixin slight-gradient($color,$from: bottom, $dif: 10%)
+	background-color: $color
+	@include background-image(linear-gradient($from,darken($color,$dif/2),lighten($color,$dif/2)))
+	@include pie

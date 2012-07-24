@@ -14,7 +14,7 @@ body
 		width: 100%
 		height: 5.2em
 		border-bottom: 1px solid darken($orange,10%)
-		@include background($orange linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)))
+		@include slight-gradient($orange)
 		@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5))
 		@include pie
 		z-index: 5000
@@ -53,14 +53,12 @@ body
 				padding: .75em 1em
 				border: none
 				border-top: 1px solid darken($orange,15%)
-				background-color: darken($orange,5%)
 				width: auto
 				max-width: 300px
 				display: table-cell
-				@include background-image(linear-gradient(bottom,darken($orange,5%),$orange 80%,darken($orange,2%)))
+				@include slight-gradient(darken($orange,8%),top,5%)
 				@include text-shadow(0 1px 3px darken($orange,15%))
 				@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
-				@include pie
 				@media screen and (min-width: 640px)
 					display: block
 					max-width: none
@@ -74,14 +72,13 @@ body
 						line-height: 1.2em
 				&:hover
 					color: #fff
-					background-color: lighten($orange,5%)
 					@include text-shadow(0 0 3px #fff)
-					@include background-image(linear-gradient(bottom,$orange,lighten($orange,8%) 80%,darken($orange,1%)))
+					@include slight-gradient($orange,top,5%)
 					@include box-shadow(0 3px 8px transparentize(darken($orange,40%),.25),0 1px 3px darken($orange,20%) inset)
 				&.selected, &.selected:hover
 					padding-top: .75em
 					background-color: lighten($orange,5%)
-					@include background-image(linear-gradient(bottom,lighten($orange,5%),lighten($orange,10%) 80%,lighten($orange,8%)))
+					@include slight-gradient(lighten($orange,10%),top)
 					@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
 					@include text-shadow(0 1px 3px darken($orange,15%))
 					@media screen and (max-width: 640px)

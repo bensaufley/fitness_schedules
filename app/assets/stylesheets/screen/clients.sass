@@ -1,10 +1,4 @@
-@import "compass"
-@import "compass/css3/pie"
-@import "compass/utilities/general/clearfix"
-
-$orange: #f47321
-$brown:  #4c2a18
-$cream:  #f0e9e2
+@import "shared"
 
 ul.clients
 	clear: both
@@ -27,16 +21,17 @@ ul.clients
 			border: 1px solid #eee
 		&.training
 			border-color: $orange
-			@include background(linear-gradient(bottom,lighten($orange,40%),lighten($orange,100%)))
+			@include slight-gradient(lighten($orange,50%))
 			&:hover
 				border-color: lighten($orange,15%)
 				@include box-shadow(0 0 15px $orange)
 			a.client:link, a.client:visited
-				color: $orange
-				@include background(linear-gradient(bottom,lighten($orange,25%),transparentize(lighten($orange,100%),1)))
+				color: #fff
+				@include slight-gradient($orange)
 				&:hover
-					color: #444
-					@include text-shadow(0 1px 5px $orange)
+					color: #fff
+					@include text-shadow(0 0 5px lighten($orange,25%))
+					@include slight-gradient(lighten($orange,2%))
 					&:before
 						content: ' \2192'
 						float: right
