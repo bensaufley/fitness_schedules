@@ -36,6 +36,7 @@ class SchedulesController < ApplicationController
 		elsif true_client == auth_client && auth_client.authenticate(params[:schedule][:client][:password])
 			@schedule.rendered = params[:schedule][:rendered]
 			@schedule.save
+			redirect_to client_path(true_client)
 		else
 			flash[:alert] = "Incorrect client authentication"
 			redirect_to @schedule

@@ -1,12 +1,12 @@
 <% provide(:title, @client.name) %>
-<h1><%= yield(:title)%></h1>
+<h2><%= yield(:title)%></h2>
 
 <% if session[:user_class] == Trainer %>
-<%= link_to "Add Schedule", edit_client_path(@client) %>
+<%= link_to "Edit Schedules", edit_client_path(@client) %>
 <% end %>
 
 <ul><% @client.schedules.order("scheduled_date DESC").each do |schedule| %>
-	<li><%= link_to schedule.scheduled_date.strftime("%d %b %Y"), schedule_path(schedule) %></li>
+	<li><%= link_to schedule.scheduled_date.strftime("%d %b %Y"), schedule_path(schedule) %> <%= schedule_complete(schedule) %></li>
 <% end %></ul>
 
 

@@ -1,78 +1,219 @@
 @import "compass"
 @import "compass/reset"
+$pie-behavior: url("/assets/PIE.htc")
+@import "compass/css3/pie"
+@import "compass/utilities/general/clearfix"
 
 $orange: #f47321
-$brown: #4c2a18
-$cream: #f0e9e2
+$brown:  #4c2a18
+$cream:  #f0e9e2
 
 a
 	@include transition(all .05s)
+	&:link, &:visited
+		text-decoration: none
+		color: $orange
+		&:hover
+			color: lighten($orange,25%)
 
 body
 	font-size: 62.5%
-	font-weight: 200
-	font-family: 'Avenir Lt Std','century gothic',CenturyGothic,Verdana,sans-serif
+	&, input, select
+		font-weight: 200
+		font-family: 'Avenir Lt Std','century gothic',CenturyGothic,Verdana,sans-serif
 	background-color: mix($brown,$cream)
 	& > header
 		font-size: 1.4em
-		position: fixed
 		top: 0
 		left: 0
 		width: 100%
 		height: 5.2em
-		background-color: $orange
 		border-bottom: 1px solid darken($orange,10%)
-		@include background-image(linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)))
+		@include background($orange linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)))
 		@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5))
+		@include pie
+		z-index: 5000
+		position: fixed
 		h1
 			font-size: 2em
-			margin: .5em 0
+			margin: .8em 0 .2em
 			text-align: center
 			text-transform: uppercase
 			color: #fff
 			font-weight: 200
 			@include text-shadow(0 1px 5px darken($orange,20%))
+			@include pie
 		nav
-			font-size: 1.2em
+			height: 1em
 			text-transform: uppercase
-			width: 960px
-			margin: 10px auto
+			margin: 0 auto
+			width: auto
+			padding: 0
+			display: table
+			margin: 0 auto
+			@media screen and (min-width: 640px)
+				display: block
+				font-size: 1.2em
+				padding: 0 20px
+			@media screen and (min-width: 1020px)
+				padding: 0
+				width: 940px
 			a:link, a:visited
 				float: left
-				margin: 0 .5em
+				margin: 0
 				color: #fff
 				text-decoration: none
-				padding: .5em 1em
+				padding: .75em 1em
 				border: none
 				border-top: 1px solid darken($orange,15%)
 				background-color: darken($orange,5%)
+				width: auto
+				max-width: 300px
+				display: table-cell
 				@include background-image(linear-gradient(bottom,darken($orange,5%),$orange 80%,darken($orange,2%)))
 				@include text-shadow(0 1px 3px darken($orange,15%))
-				@include border-radius(4px)
 				@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
+				@include pie
+				@media screen and (min-width: 640px)
+					display: block
+					max-width: none
+					@include border-radius(4px)
+					margin: 0 .5em
+					padding: .5em 1em
+					&.signout
+						float: right
+						font-size: .833em
+						height: 1.2em
+						line-height: 1.2em
 				&:hover
+					color: #fff
 					background-color: lighten($orange,5%)
-					@include text-shadow(0 1px 4px #fff)
+					@include text-shadow(0 0 3px #fff)
 					@include background-image(linear-gradient(bottom,$orange,lighten($orange,8%) 80%,darken($orange,1%)))
 					@include box-shadow(0 3px 8px transparentize(darken($orange,40%),.25),0 1px 3px darken($orange,20%) inset)
+				&.selected, &.selected:hover
+					padding-top: .75em
+					background-color: lighten($orange,5%)
+					@include background-image(linear-gradient(bottom,lighten($orange,5%),lighten($orange,10%) 80%,lighten($orange,8%)))
+					@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5), 0 1px 3px darken($orange,10%) inset)
+					@include text-shadow(0 1px 3px darken($orange,15%))
+					@media screen and (max-width: 640px)
+						padding-top: 1.25em
+						@include border-radius (0 0 4px 4px !important)
+				&:first-child
+					margin-left: 0
+				&:last-child
+					margin-right: 0
+				&.signout
+					color: lighten($orange,35%)
+					&:hover
+						color: #fff
+				@media screen and (max-width: 640px)
+					&:first-child
+						@include border-radius(0 0 0 4px)
+					&:last-child
+						@include border-radius(0 0 4px 0)
 	#container
 		font-size: 1.6em
-		width: 940px
+		width: auto
 		margin: 4.55em auto 0
-		padding: 2.3em 20px 20px
+		padding: 2.8em 20px 20px
 		background-color: #fff
-		@include box-shadow(0 0 15px mix($cream,$brown,25%))
+		@media screen and (min-width: 1020px)
+			padding-top: 2.3em
+			width: 940px
+			@include box-shadow(0 0 15px mix($cream,$brown,25%))
+			@include pie
+		.alert
+			padding: 20px
+			margin: 1em 20px
+			border-style: solid
+			border-width: 1px
+			font-weight: bold
+			@include border-radius(4px)
+			@include pie
+			@media screen and (min-width: 640px)
+				width: 440px
+				margin: 1em auto
+			&.alert-error
+				color: #c54
+				border-color: #c54
+				@include background(transparentize(#c54,.8))
+			&.alert-success
+				color: #326322
+				border-color: #326322
+				@include background(transparentize(#326322,.8))
+		h2
+			text-align: center
+			font-size: 1.6em
+			font-weight: 500
+			color: mix(#666,$orange,75%)
+			text-transform: uppercase
+			border-bottom: 1px solid lighten($orange,25%)
+			@include background-image(linear-gradient(bottom,lighten($orange,40%),#fff 50%))
+			@include pie
+		div.pagination
+			display: block
+			float: left
+			width: 100%
+			margin: .5em auto
+			padding: 0
+			font-size: .857em
+			position: relative
+			ul
+				clear: left
+				float: left
+				list-style: none
+				margin: 0
+				padding: 0
+				position: relative
+				left: 50%
+				text-align: center
+				li
+					display: block
+					float: left
+					list-style: none
+					margin: 0 0 1em
+					padding: 0
+					position: relative
+					right: 50%
+					float: left
+					@media screen and (min-width: 640px)
+						margin: 0 .5em 1em
+					&:first-child a
+						@include border-radius(4px 0 0 4px)
+						border: none !important
+					&:last-child a
+						@include border-radius(0 4px 4px 0)
+					a:link, a:visited
+						text-decoration: none
+						color: $orange
+						padding: 1.5em 1em
+						line-height: 1.6em
+						@include text-shadow(0 -1px 3px #fff)
+						@include background(rgba(0,0,0,.05) linear-gradient(bottom,rgba(0,0,0,.1),rgba(0,0,0,0.0)))
+						@include pie
+						border-left: 1px solid #ccc
+						&:hover
+							@include background(rgba(0,0,0,.025))
+							@include text-shadow(0 0 5px #fff)
+							@include box-shadow(0 1px 6px #bbb)
+						@media screen and (min-width: 640px)
+							@include border-radius(4px !important)
+							border: 1px solid #ccc !important
+							padding: .5em .75em
 	
 	& > footer
 		width: 100%
-		background-color: #4c2a18
+		background-color: $brown
 		color: #fff
 		text-align: center
 		font-size: 1.2em
 		padding: 20px 0
+		@include background-image(linear-gradient(bottom,$brown,lighten($brown,5%)))
+		@include pie
 		.club_link, .club_link:visited
 			display: block
-			background-image: url('/assets/scla.png')
 			background-position: 50% 0
 			width: 140px
 			height: 89px
@@ -80,12 +221,15 @@ body
 			white-space: nowrap
 			overflow: hidden
 			margin: 0 auto
+			background-image: url('/assets/scla.png')
 			&:hover
 				background-position: 50% -2px
-
+			@media screen and (-webkit-min-device-pixel-ratio: 1.5)
+				background-image: url('/assets/scla_2x.png')
+				background-size: 260px 89px
 /* Just for testing */
 pre.debug_dump
-	width: 940px
+	width: auto
 	padding: 20px
 	background-color: #333
 	color: #fff
@@ -94,3 +238,7 @@ pre.debug_dump
 	font-family: Monaco, monospace
 	line-height: 1.3em
 	font-smooth: none
+	white-space: pre
+	overflow-x: auto
+	@media screen and (min-width: 1020px)
+		width: 940px

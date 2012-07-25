@@ -1,0 +1,114 @@
+@import "compass"
+$pie-behavior: url("/assets/PIE.htc")
+@import "compass/css3/pie"
+@import "compass/utilities/general/clearfix"
+
+$orange: #f47321
+$brown:  #4c2a18
+$cream:  #f0e9e2
+
+section#signin
+	font-size: 1.6em
+	width: 480px
+	margin: 120px auto
+	padding: 0
+	#user_type_switch
+		width: 100%
+		margin: 0 0 .5em
+		@include clearfix
+		div
+			width: 40%
+			padding: 7px 5%
+			float: left
+			color: #666
+			text-align: center
+			cursor: pointer
+			@include transition(all .2s)
+			@include background(#ccc linear-gradient(bottom,#ccc,#eee))
+			@include pie
+			&#trainer
+				@include border-radius(4px 0 0 4px)
+			&#client
+				@include border-radius(0 4px 4px 0)
+			&.selected
+				color: #fff
+				cursor: default
+				@include box-shadow(0 2px 4px darken($orange,10%) inset !important)
+				@include background($orange linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)) !important)
+				@include text-shadow(0 2px 4px darken($orange,20%))
+			&:hover
+				@include background(#bbb linear-gradient(bottom,#bbb,#e9e9e9))
+				@include box-shadow(0 -2px 3px #999 inset)
+			&:active
+				color: darken($orange,25%)
+				@include background(#ccc linear-gradient(top,#ccc,#eee))
+				@include box-shadow(0 3px 4px rgba(0,0,0,.4) inset)
+	input
+		font-size: 1em
+	select
+		font-size: 1.6em
+		width: 100%
+	@media screen and (max-width: 640px)
+		margin: 0
+		width: auto
+	label
+		clear: both
+		display: block
+		margin: 0 0 .5em
+		width: 480px
+		@include border-radius(4px)
+		@media screen and (max-width: 640px)
+			width: auto
+		&:focus
+			background-color: lighten($orange,25%)
+			color: $orange
+		strong
+			display: block
+			float: left
+			width: 28%
+			margin: 0
+			text-align: right
+			padding: 8px 2% 7px 0
+			border: 1px solid #ccc
+			border-right: none
+			color: #666
+			@include background(#ccc linear-gradient(top,#ccc,#eee))
+			@include border-radius(4px 0 0 4px)
+			@include pie
+			&:hover
+				color: #333
+				@include background(#ccc linear-gradient(top,#ddd,#fff))
+			@media screen and (max-width: 640px)
+				display: none
+		input
+			padding: 5px 2.5%
+			margin: 0 -1px
+			border: 1px solid #bbb
+			width: 65%
+			@include border-radius(0 4px 4px 0)
+			&:focus
+				outline: none
+				border-color: $orange
+				@include box-shadow(0 0 10px lighten($orange,10%))
+			@media screen and (max-width: 640px)
+				width: 95%
+				@include border-radius(4px)
+	input#submit
+		font-size: 1em
+		width: 50%
+		color: #fff
+		border: 0
+		padding: 7px 5%
+		margin: 0 0 0 50%
+		cursor: pointer
+		@include border-radius(4px)
+		@include box-shadow(0 -2px 3px darken($orange,15%) inset)
+		@include background($orange linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)))
+		@include text-shadow(0 2px 4px darken($orange,20%))
+		@include pie
+		&:hover
+			@include box-shadow(0 -3px 3px darken($orange,15%) inset)
+			@include background(lighten($orange,5%) linear-gradient(bottom,$orange,lighten($orange,15%)))
+		&:active
+			@include box-shadow(0 2px 3px darken($orange,15%) inset)
+			@include background(darken($orange,15%) linear-gradient(top,darken($orange,5%),lighten($orange,5%)))

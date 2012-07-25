@@ -1,5 +1,5 @@
 <% provide(:title, @client.name) %>
-<h1><%= link_to @client.name, @client %></h1>
+<h2><%= link_to @client.name, @client %></h2>
 
 <%= render :partial => 'shared/errors', :locals => { :user => @client } %>
 

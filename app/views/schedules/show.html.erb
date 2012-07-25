@@ -1,6 +1,6 @@
 <% provide(:title, @schedule.scheduled_date) %>
 
-<h1>Schedule for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %> on <%= @schedule.scheduled_date %></h1>
+<h2>Schedule for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %> on <%= @schedule.scheduled_date %></h2>
 
 <% if session[:user_class] == Trainer && @schedule.rendered.nil? %>
 	<%= link_to 'Edit Schedule', edit_schedule_path(@schedule) %>
