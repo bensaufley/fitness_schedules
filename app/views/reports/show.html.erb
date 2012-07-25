@@ -1,0 +1,10 @@
+<h1>Reports#show</h1>
+<p>Find me in app/views/reports/show.html.erb</p>
+
+<%= params %> 
+
+<ul>
+  <% @trainer.schedules.each do |sched| %>
+    <li><%= sched.scheduled_date %></li>
+  <% end %>
+</ul>
