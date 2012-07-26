@@ -1,3 +1,7 @@
+if console==undefined
+	console =
+		log: ->
+
 $(document).ready ->
 	$('#user_type').hide()
 	$('#user_type_switch').show()
