@@ -5,6 +5,9 @@
 a
 	@include transition(all .05s)
 
+input, select
+	font-size: 1em
+
 body
 	background-color: mix($brown,$cream)
 	& > header
@@ -138,6 +141,11 @@ body
 			margin: 0 0 .8em
 			@include background-image(linear-gradient(bottom,lighten($orange,40%),#fff 50%))
 			@include pie
+		h3
+			text-align: center
+			font-size: 1.2em
+			margin-bottom: .7em
+			color: mix(#666,$orange,90%)
 		p
 			width: 480px
 			margin: 0 auto .6em

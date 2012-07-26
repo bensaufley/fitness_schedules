@@ -121,3 +121,44 @@ ul.clients
 					padding: 1em .5em .9em
 		a:link, a:visited
 			text-decoration: none
+
+#add_sessions, #current_sessions
+	width: 480px
+	margin: 0 auto .7em
+	@media screen and (max-width: 640px)
+		width: auto
+		padding: 20px
+a.add_session
+	&:link, &:visited
+		width: 480px
+		margin: 0 auto .7em
+		display: block
+		@include slight-gradient($orange)
+		color: #fff
+		padding: .4em 0
+		text-align: center
+		@include text-shadow(0 1px 3px darken($orange,15%))
+		@include border-radius(4px)
+		@include pie
+		&:hover
+			@include slight-gradient(lighten($orange,10%))
+			@include text-shadow(0 1px 3px darken($orange,15%), 0 0 5px #fff)
+		&:active
+			@include slight-gradient(darken($orange,5%),top)
+
+input.save
+	border: 1px solid #3a0
+	color: #3a0
+	background-color: #efd
+	text-transform: uppercase
+	padding: .4em 3em .2em
+	@include border-radius(4px)
+	&:hover
+		color: #fff
+		@include box-shadow(none)
+		@include text-shadow(none)
+		@include background(#8b7 linear-gradient(bottom,#7a6,#9c8))
+	&:active
+		color: #fff
+		@include background(#8b7 linear-gradient(top,#6a5,#8c7))
+	

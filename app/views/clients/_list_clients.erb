@@ -10,7 +10,7 @@
 	<%- 	elsif client.trainer == current_user %>
 		<%= link_to client.name, client_path(client), :class => "client" %>
 		<div class="options">
-			<%= link_to "Schedule", edit_client_path(client), :class => "schedule" %>
+			<%= link_to "Sessions", edit_client_path(client), :class => "schedule" %>
 			<%= link_to "Remove", remove_trainer_client_path(client), :confirm => "Are you sure you wish to remove " + client.name + " as a client?", :class => "remove" %>
 		</div>
 	<%- 	else %>

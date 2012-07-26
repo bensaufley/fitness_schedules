@@ -4,13 +4,17 @@
 <%= render :partial => 'shared/errors', :locals => { :user => @client } %>
 
 <%= nested_form_for @client do |f| %>
-
-	<p><%= f.link_to_add "Add Schedule", :schedules %></p>
-		
-	<%= f.fields_for :schedules do |schedule_form| %>
-		<%= schedule_form.date_select :scheduled_date %> 
-		<%= schedule_form.link_to_remove "Remove" %>
-	<% end %>
+	<%= f.submit "Save", :class => 'save' %>
+	<div id="add_sessions">
+		<%= f.link_to_add "Add Session", :schedules, :class => "add_session" %>
+	</div>
+	<h3>Current Sessions:</h3>
+	<div id="current_sessions">
+		<%= f.fields_for :schedules do |schedule_form| %>
+			<%= schedule_form.date_select :scheduled_date %> 
+			<%= schedule_form.link_to_remove "Remove" %>
+		<% end %>
+	</div>
 	
-	<br><%= f.submit "Create", class: 'btn btn-large btn-primary' %></br>
+	<%= f.submit "Save", :class => 'save' %>
 <% end %>

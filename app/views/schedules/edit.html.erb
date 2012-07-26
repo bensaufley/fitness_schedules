@@ -1,10 +1,12 @@
 <% provide(:title, @schedule.scheduled_date) %>
 
-<h2>Schedule for <%= link_to @schedule.client.name, schedule_path(@schedule) %> on <%= @schedule.scheduled_date %></h2>
+<h2>Workout for <%= link_to @schedule.client.name, schedule_path(@schedule) %></h2>
+<h3><%= @schedule.scheduled_date.strftime("%A, %B %e, %Y") %></h3>
 
 <%= render :partial => 'shared/errors', :locals => { :user => @schedule } %>
 
 <%= nested_form_for @schedule do |f| %>
+	<%= f.submit "Save", :class => 'save' %>
 
 	<p><%= f.link_to_add "Add Exercise", :exercises %></p>
 		
@@ -27,5 +29,5 @@
 		<%= exercise_form.link_to_remove "Remove Exercise" %>
 	<% end %>
 	
-	<br><%= f.submit "Create", class: 'btn btn-large btn-primary' %></br>
+	<%= f.submit "Save", :class => 'save' %>
 <% end %>

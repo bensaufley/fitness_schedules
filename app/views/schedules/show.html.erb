@@ -1,9 +1,9 @@
 <% provide(:title, @schedule.scheduled_date) %>
 
-<h2>Schedule for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %> on <%= @schedule.scheduled_date %></h2>
-
+<h2>Workout for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %></h2>
+<h3><%= @schedule.scheduled_date.strftime("%A, %B %e, %Y") %></h3>
 <% if session[:user_class] == Trainer && @schedule.rendered.nil? %>
-	<%= link_to 'Edit Schedule', edit_schedule_path(@schedule) %>
+	<%= link_to 'Edit Session', edit_schedule_path(@schedule) %>
 <% end %>
 
 <table border="1">
