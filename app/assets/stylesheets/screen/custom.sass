@@ -101,17 +101,18 @@ body
 					&:last-child
 						@include border-radius(0 0 4px 0)
 	#container
-		font-size: 1.4em
-		width: auto
 		margin: 4.55em auto 0
-		padding: 2.8em 20px 20px
 		background-color: #fff
-		@media screen and (min-width: 1020px)
-			font-size: 1.6em
-			padding-top: 2.3em
-			width: 940px
-			@include box-shadow(0 0 15px mix($cream,$brown,25%))
-			@include pie
+		font-size: 1.6em
+		padding: 2.3em 20px 20px
+		width: 940px
+		@include box-shadow(0 0 15px mix($cream,$brown,25%))
+		@include pie
+		@media screen and (max-width: 640px)
+			padding: 2.8em 20px 20px
+			font-size: 1.4em
+		@media screen and (max-width: 1020px)
+			width: auto
 		.alert
 			padding: 20px
 			margin: 1em 20px
