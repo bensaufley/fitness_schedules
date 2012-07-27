@@ -1,50 +1,67 @@
 <% provide(:title, @schedule.scheduled_date) %>
-
-<h2>Workout for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %></h2>
-<h3><%= @schedule.scheduled_date.strftime("%A, %B %e, %Y") %></h3>
-<% if session[:user_class] == Trainer && @schedule.rendered.nil? %>
-	<%= link_to 'Edit Session', edit_schedule_path(@schedule) %>
-<% end %>
-
-<table border="1">
-		<tr>
-			<td>Circuit</td>
-			<td>Order</td>
-			<td>Exercise</td>
-			<td>Weight or Intensity</td>
-			<td>Reps or Duration</td>
-		</tr>
-
-	<% @schedule.exercises.order(:circuit, :ex_order).each do |exercise| %>
-  	<tr>
-    	<td><%= exercise.circuit %></td>
-    	<td><%= exercise.ex_order %></td>
-    	<td><%= exercise.name %></td>
-    	<td><%= exercise.weight_or_intensity %></td>
-    	<td><%= exercise.reps_or_duration %></td>
-  	</tr>
-  <% end %>
-</table>
-
-<% if @schedule.rendered.nil? %>
-	<p><h3>Indicate completion of this session</h3></p>
-	<%= form_for @schedule, :url => complete_schedule_path(@schedule) do |f| %>
+<section class="session">
+	<h2>Workout for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %></h2>
+	<h3><%= @schedule.scheduled_date.strftime("%A, %B %e, %Y") %></h3>
+	<% if session[:user_class] == Trainer && @schedule.rendered.nil? %>
+		<%= link_to 'Edit Session', edit_schedule_path(@schedule), :class => "edit_session" %>
+	<% end %>
 	
-		<%= f.radio_button :rendered, true %>
-		<%= f.label :rendered, "I received this training session on the scheduled date.", value: true%><br>
-		<%= f.radio_button :rendered, false %>
-		<%= f.label :rendered, "I cancelled this training session with less than 24 hours notice.", value: false %><br>
+	<table class="workout_summary">
+		<thead>
+			<tr>
+				<td>Circuit</td>
+				<td>Order</td>
+				<td>Exercise</td>
+				<td>Weight/Intensity</td>
+				<td>Reps/Duration</td>
+			</tr>
+		</thead>
+		<tbody>
+		<% if !@schedule.exercises.empty?
+			@schedule.exercises.order(:circuit, :ex_order).each do |exercise| %>
+	  	<tr>
+	    	<td><%= exercise.circuit %></td>
+	    	<td><%= exercise.ex_order %></td>
+	    	<td><%= exercise.name %></td>
+	    	<td><%= exercise.weight_or_intensity %></td>
+	    	<td><%= exercise.reps_or_duration %></td>
+	  	</tr>
+	  <%	end
+		  else
+	  %>
+	  	<tr><td colspan="5">No circuits recorded yet.</td></tr>
+	  <% end %>
+	  </tbody>
+	</table>
+	
+	<% if @schedule.rendered.nil? %>
+		<h3>Indicate completion of this session</h3>
+		<%= form_for @schedule, :url => complete_schedule_path(@schedule) do |f| %>
 		
-		<%= f.fields_for @schedule.client do |client_fields| %>
-			<%= client_fields.label :email %>
-			<%= client_fields.text_field :email %>
+		<div class="row">
+			<%= f.radio_button :rendered, true %>
+			<%= f.label :rendered, "I received this training session on the scheduled date.", :value => true %>
+		</div>
+		<div class="row">
+			<%= f.radio_button :rendered, false %>
+			<%= f.label :rendered, "I cancelled this training session with less than 24 hours notice.", :value => false %>
+		</div>
 			
-			<%= client_fields.label :password %>
-			<%= client_fields.password_field :password %>
-		<% end %>
+			<%= f.fields_for @schedule.client do |client_fields| %>
+		<div class="row">
+				<%= client_fields.label :email %>
+				<%= client_fields.text_field :email %>
+		</div>
+		<div class="row">
+				
+				<%= client_fields.label :password %>
+				<%= client_fields.password_field :password %>
+		</div>
+			<% end %>
+			
+			<%= f.submit "Submit", :class => "save" %>
 		
-		<%= f.submit "Submit" %>
+		<% end %>
 	
 	<% end %>
-
-<% end %>
+</section>

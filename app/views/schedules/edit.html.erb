@@ -1,33 +1,42 @@
 <% provide(:title, @schedule.scheduled_date) %>
 
-<h2>Workout for <%= link_to @schedule.client.name, schedule_path(@schedule) %></h2>
-<h3><%= @schedule.scheduled_date.strftime("%A, %B %e, %Y") %></h3>
-
-<%= render :partial => 'shared/errors', :locals => { :user => @schedule } %>
-
-<%= nested_form_for @schedule do |f| %>
-	<%= f.submit "Save", :class => 'save' %>
-
-	<p><%= f.link_to_add "Add Exercise", :exercises %></p>
-		
-	<%= f.fields_for :exercises do |exercise_form| %>
-		<%= exercise_form.label :circuit %>
-		<%= exercise_form.number_field :circuit, { min: 1, step: 1 } %>
-		<br>		
-		<%= exercise_form.label :ex_order, "Order" %>
-		<%= exercise_form.number_field :ex_order, { min: 1, step: 1 } %>
-		<br>
-		<%= exercise_form.label :name %>
-		<%= exercise_form.text_field :name %>
-		<br>
-		<%= exercise_form.label :weight_or_intensity, "Weight/Intensity" %>
-		<%= exercise_form.text_field :weight_or_intensity %>
-		<br>
-		<%= exercise_form.label :reps_or_duration, "Reps/Duration" %>
-		<%= exercise_form.text_field :reps_or_duration %>
-		<br>
-		<%= exercise_form.link_to_remove "Remove Exercise" %>
-	<% end %>
+<section class="session">
+	<h2>Workout for <%= link_to @schedule.client.name, schedule_path(@schedule) %></h2>
+	<h3><%= @schedule.scheduled_date.strftime("%A, %B %e, %Y") %></h3>
 	
-	<%= f.submit "Save", :class => 'save' %>
-<% end %>
+	<%= render :partial => 'shared/errors', :locals => { :user => @schedule } %>
+	
+	<%= nested_form_for @schedule do |f| %>
+		
+		<div class="buttons">
+			<%= f.submit "Save", :class => 'save' %>
+			<%= link_to "Cancel", @schedule, :class => 'cancel' %>
+		</div>
+	
+		<p><%= f.link_to_add "Add Exercise", :exercises %></p>
+			
+		<%= f.fields_for :exercises do |exercise_form| %>
+			<%= exercise_form.label :circuit %>
+			<%= exercise_form.number_field :circuit, { min: 1, step: 1 } %>
+			<br>		
+			<%= exercise_form.label :ex_order, "Order" %>
+			<%= exercise_form.number_field :ex_order, { min: 1, step: 1 } %>
+			<br>
+			<%= exercise_form.label :name %>
+			<%= exercise_form.text_field :name %>
+			<br>
+			<%= exercise_form.label :weight_or_intensity, "Weight/Intensity" %>
+			<%= exercise_form.text_field :weight_or_intensity %>
+			<br>
+			<%= exercise_form.label :reps_or_duration, "Reps/Duration" %>
+			<%= exercise_form.text_field :reps_or_duration %>
+			<br>
+			<%= exercise_form.link_to_remove "Remove Exercise" %>
+		<% end %>
+		
+		<div class="buttons">
+			<%= f.submit "Save", :class => 'save' %>
+			<%= link_to "Cancel", @schedule, :class => 'cancel' %>
+		</div>
+	<% end %>
+</section>

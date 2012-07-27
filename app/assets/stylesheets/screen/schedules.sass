@@ -1,0 +1,52 @@
+@import "base"
+
+section.session
+	width: 480px
+	margin: 0 auto
+	@media screen and (max-width: 640px)
+		width: 100%
+
+a.edit_session
+	&:link, &:visited
+		margin: 0 auto 1.5em
+		display: block
+		@include slight-gradient($orange)
+		color: #fff
+		padding: .4em 0
+		text-align: center
+		@include text-shadow(0 1px 3px darken($orange,15%))
+		@include border-radius(4px)
+		@include pie
+		@media screen and (max-width: 640px)
+			padding: 1em 0
+		&:hover
+			@include slight-gradient(lighten($orange,10%))
+			@include text-shadow(0 1px 3px darken($orange,15%), 0 0 5px #fff)
+		&:active
+			@include slight-gradient(darken($orange,5%),top)
+
+table.workout_summary
+	@include border-radius(4px)
+	border-collapse: collapse
+	border: 1px solid lighten($orange, 30%)
+	width: 100%
+	font-size: .8em
+	margin: 0 0 1.875em
+	thead
+		font-weight: 600
+		text-align: center
+		@include slight-gradient(desaturate($orange,5%))
+		color: #fff
+		@include border-radius(4px 4px 0 0)
+	td
+		padding: .3em .5em
+		border: 1px solid lighten($orange,30%)
+	tbody
+		td:first-child
+			text-align: right
+		td[colspan='5']
+			color: #666
+			text-align: center
+		td:nth-child(2n+2)
+			background-color: lighten($orange,40%)
+		

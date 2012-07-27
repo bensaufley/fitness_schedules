@@ -232,6 +232,40 @@ body
 			@media screen and (-webkit-min-device-pixel-ratio: 1.5)
 				background-image: url('/assets/scla_2x.png')
 				background-size: 260px 89px
+				
+div.row
+	margin: 0 0 .7em
+	@include clearfix
+
+div.buttons
+	text-align: right
+input.save
+	border: 1px solid #3a0
+	color: #3a0
+	background-color: #efd
+	text-transform: uppercase
+	padding: .4em 3em .2em
+	@include border-radius(4px)
+	@media screen and (max-width: 640px)
+		padding: .7em 3em .6em
+	&:hover
+		color: #fff
+		@include box-shadow(none)
+		@include text-shadow(none)
+		@include background(#8b7 linear-gradient(bottom,#7a6,#9c8))
+	&:active
+		color: #fff
+		@include background(#8b7 linear-gradient(top,#6a5,#8c7))
+a.cancel, a.remove
+	&:link, &:visited
+		color: #b10
+		text-transform: uppercase
+		font-size: .8em
+		&:hover
+			color: #f10
+		&:active
+			color: #c00
+
 /* Just for testing */
 pre.debug_dump
 	width: auto

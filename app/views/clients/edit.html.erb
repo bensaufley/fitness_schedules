@@ -1,30 +1,32 @@
 <% provide(:title, @client.name) %>
-<h2><%= link_to @client.name, @client %></h2>
-
-<%= render :partial => 'shared/errors', :locals => { :user => @client } %>
-
-<%= nested_form_for @client do |f| %>
-	<div class="buttons">
-		<%= f.submit "Save", :class => 'save' %>
-		<%= link_to "Cancel", @client, :class => "cancel", :confirm => "Are you sure you wish to cancel? All unsaved changes will be lost." %>
-	</div>
-	<div id="add_sessions">
-		<%= f.link_to_add "Add Session", :schedules, :class => "add_session" %>
-	</div>
-	<h3>Current Sessions:</h3>
-	<div id="current_sessions">
-		<%= f.fields_for :schedules do |schedule_form| %>
-			<div class="row">
-				<div class="date_select_block">
-					<%= schedule_form.date_select :scheduled_date, { :order => [:month, :day, :year] }, :class => "date_select" %>
-				</div>
-				<%= schedule_form.link_to_remove "Remove", :class => "remove" %>
-			</div>
-		<% end %>
-	</div>
+<section class="client">
+	<h2><%= link_to @client.name, @client %></h2>
 	
-	<div class="buttons">
-		<%= f.submit "Save", :class => 'save' %>
-		<%= link_to "Cancel", @client, :class => "cancel", :confirm => "Are you sure you wish to cancel? All unsaved changes will be lost." %>
-	</div>
-<% end %>
+	<%= render :partial => 'shared/errors', :locals => { :user => @client } %>
+	
+	<%= nested_form_for @client do |f| %>
+		<div class="buttons">
+			<%= f.submit "Save", :class => 'save' %>
+			<%= link_to "Cancel", @client, :class => "cancel", :confirm => "Are you sure you wish to cancel? All unsaved changes will be lost." %>
+		</div>
+		<div id="add_sessions">
+			<%= f.link_to_add "Add Session", :schedules, :class => "add_session" %>
+		</div>
+		<h3>Current Sessions:</h3>
+		<div id="current_sessions">
+			<%= f.fields_for :schedules do |schedule_form| %>
+				<div class="row">
+					<div class="date_select_block">
+						<%= schedule_form.date_select :scheduled_date, { :order => [:month, :day, :year] }, :class => "date_select" %>
+					</div>
+					<%= schedule_form.link_to_remove "Remove", :class => "remove" %>
+				</div>
+			<% end %>
+		</div>
+		
+		<div class="buttons">
+			<%= f.submit "Save", :class => 'save' %>
+			<%= link_to "Cancel", @client, :class => "cancel", :confirm => "Are you sure you wish to cancel? All unsaved changes will be lost." %>
+		</div>
+	<% end %>
+</section>

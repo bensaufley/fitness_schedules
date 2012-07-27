@@ -122,11 +122,15 @@ ul.clients
 		a:link, a:visited
 			text-decoration: none
 
-#add_sessions, #current_sessions, div.buttons
+
+section.client
 	width: 480px
+	margin: 0 auto
+	@media screen and (max-width: 640px)
+		width: 100%
+#add_sessions, #current_sessions, div.buttons
 	margin: 0 auto .7em
 	@media screen and (max-width: 640px)
-		width: auto
 		padding: 0 20px
 	div.row
 		padding: .3em
@@ -164,43 +168,14 @@ ul.clients
 				color: darken($orange,15%)
 				font-weight: 600
 
-div.buttons
-	text-align: right
-input.save
-	border: 1px solid #3a0
-	color: #3a0
-	background-color: #efd
-	text-transform: uppercase
-	padding: .4em 3em .2em
-	@include border-radius(4px)
-	@media screen and (max-width: 640px)
-		padding: .7em 3em .6em
-	&:hover
-		color: #fff
-		@include box-shadow(none)
-		@include text-shadow(none)
-		@include background(#8b7 linear-gradient(bottom,#7a6,#9c8))
-	&:active
-		color: #fff
-		@include background(#8b7 linear-gradient(top,#6a5,#8c7))
-a.cancel, a.remove
-	&:link, &:visited
-		color: #b10
-		text-transform: uppercase
-		font-size: .8em
-		&:hover
-			color: #f10
-		&:active
-			color: #c00
 a.remove
 	float: right
 	padding: .6em .3em 0
 	@media screen and (max-width: 640px)
 		padding: 1.4em .3em 0
 
-a.add_session
+a.add_session, a.edit_sessions
 	&:link, &:visited
-		width: 480px
 		margin: 0 auto 1.5em
 		display: block
 		@include slight-gradient($orange)
@@ -211,11 +186,30 @@ a.add_session
 		@include border-radius(4px)
 		@include pie
 		@media screen and (max-width: 640px)
-			width: 100%
 			padding: 1em 0
 		&:hover
 			@include slight-gradient(lighten($orange,10%))
 			@include text-shadow(0 1px 3px darken($orange,15%), 0 0 5px #fff)
 		&:active
 			@include slight-gradient(darken($orange,5%),top)
-	
+
+ul.client_sessions
+	margin: 0 20px
+	li
+		display: block
+		@include border-radius(4px)
+		border: 1px solid transparentize($orange,.8)
+		padding: .3em
+		margin: 0 0 .3em
+		@include clearfix
+		&:hover
+			border: 1px solid $orange
+		a.session
+			&:link, &:visited
+				float: left
+				color: $orange
+				padding: .3em 1em
+				margin: 0 1.5em 0 0
+				@include border-radius(4px)
+				&:hover
+					background-color: transparentize($orange,.8)
