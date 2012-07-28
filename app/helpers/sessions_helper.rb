@@ -78,6 +78,12 @@ module SessionsHelper
     session[:return_to] = request.fullpath
   end  
   
+  def is_admin
+    unless current_user.class == Trainer && current_user.admin? == true
+      redirect_to '/noauth'
+    end
+  end
+  
   private
 		
 		def get_model_from_params(params)

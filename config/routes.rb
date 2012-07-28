@@ -1,4 +1,8 @@
 FitnessSchedules::Application.routes.draw do
+  get "reports/new"
+
+  get "reports/show"
+
   get "schedules/new"
 
   resources :trainers
@@ -14,6 +18,7 @@ FitnessSchedules::Application.routes.draw do
   		put 'complete'
   	end
   end
+  resources :reports
   
   match '/signin', to: "sessions#new"
   match '/signout', to: "sessions#destroy", via: :delete

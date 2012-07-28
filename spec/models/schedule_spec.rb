@@ -12,6 +12,7 @@ describe Schedule do
 	it { should respond_to(:rendered) }
 	it { should respond_to(:client) }
 	it { should respond_to(:exercises) }
+	it { should respond_to(:trainers) }
 	
 	describe 'accessible attributes' do
 		it 'should not allow access to client_id' do

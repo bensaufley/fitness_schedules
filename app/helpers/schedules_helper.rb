@@ -9,5 +9,11 @@ module SchedulesHelper
       nil
     end
   end
+  
+  def rendered
+    schedule = Schedule.find(params[:id])
+    flash[:alert] = "This schedule is marked as complete and cannot be edited"
+    redirect_to schedule unless schedule.rendered == nil
+  end
     
 end

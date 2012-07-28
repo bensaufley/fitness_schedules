@@ -18,7 +18,11 @@ A scheduling webapp to help trainers and clients collaborate and track their wor
 +	Set up `:admin` boolean on Trainer model
 +	Reporting pages, accessible to admin only:
 	*	Schedules by Trainer
-		-	Columns for `:client`, `:scheduled_date`, `:rendered`
+		- Need to make sortable
+		- Limit by date -- write SQL query to take passed dates and limit schedules
+		  - @schedule in report_controller#show
+	* ALL schedules 
+	  - move @schedules.each table in reports_controller#show to partial
 +	Styling
 	*	CSS media queries
 		-	Implemented in `custom.sass`, which covers most general cases
