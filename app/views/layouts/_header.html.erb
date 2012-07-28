@@ -11,6 +11,7 @@
 				<%= link_to "Client Index", clients_path, :class => (current_page?(clients_path) ? "selected" : "") %>
 					<% if current_user.admin == true %>
 					  <%= link_to "Create New Trainer", new_trainer_path %>
+					  <%= link_to "Reports", new_report_path %>
 					<% end %>
 			<% elsif session[:user_class] == Client %>
 				<%= link_to "My Profile", client_path(Client.find(session[:user_id])), :class => (current_page?(client_path(Client.find(session[:user_id]))) ? "selected" : "") %>
