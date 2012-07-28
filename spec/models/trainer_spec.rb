@@ -14,6 +14,9 @@ describe Trainer do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:clients) }
+  it { should respond_to(:schedules) }
+  it { should respond_to(:admin) }
+   specify { @trainer.admin.should be_false }
   
   describe "When name is not present" do
     before { @trainer.name = '' }
@@ -66,5 +69,11 @@ describe Trainer do
       it { should_not == trainer_for_invalid_password }
       specify { trainer_for_invalid_password.should be_false }
     end
+  end
+  
+  describe "manually setting admin on trainer" do
+    before do 
+      @trainer.admin = true
+    end.should { raise_error(ActiveModel::MassAssignmentSecurity::Error) }
   end
 end

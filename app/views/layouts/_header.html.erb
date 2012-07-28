@@ -3,6 +3,7 @@
 			Fitness Tracker <%# Seems like at some point we'll need a catchy name. For now, I'm just trying to shorten this and remove SCLA reference (so RSCNY can use it) %>
 		</h1>
 		<nav>
+		
 			<%# Added logic for styling buttons to show what page the user is on %>
 		<% if signed_in? %>
 			<% if session[:user_class] == Trainer %>
@@ -24,6 +25,7 @@
 			<%= link_to "Home", root_path, :class => (current_page?(root_path) || current_page?('/') ? "selected" : "") %>
 			<%= link_to "Sign in", signin_path, :class => (current_page?(new_session_path) || current_page?('/signin') || current_page?('/sessions') ? "selected" : "")  %>
 		<% end %>
+
 		</nav>
 </header>
 
