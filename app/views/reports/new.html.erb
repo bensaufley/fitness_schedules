@@ -6,6 +6,12 @@ Please enter a trainer's email address to pull up a report of all their sessions
   
   <%= f.label :email %>
   <%= f.text_field :email %>
+  
+  <%= f.label :start_date %>
+  <%= f.date_select :start_date %>
+  
+  <%= f.label :end_date %>
+  <%= f.date_select :end_date %>
 
   <%= f.submit "Generate Report" %>
 

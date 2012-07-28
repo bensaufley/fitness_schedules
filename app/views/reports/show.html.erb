@@ -1,10 +1,20 @@
-<h1>Reports#show</h1>
-<p>Find me in app/views/reports/show.html.erb</p>
+<% provide(:title, "Full Report for #{@trainer.name}") %>
 
-<%= params %> 
+<%= params %><br>
 
-<ul>
-  <% @trainer.schedules.each do |sched| %>
-    <li><%= sched.scheduled_date %></li>
+<table>
+  <tr>
+    <td>Client</td>
+    <td>Scheduled Date</td>
+    <td>Status</td>
+    <td>Date last updated</td>
+  </tr>
+  <% @schedules.each do |sched| %>
+    <tr>
+      <td> <%= sched.client.name %></td>
+      <td><%= sched.scheduled_date %></td>
+      <td><%= how_rendered(sched) %></td>
+      <td><%= sched.updated_at %></td>
+    </tr>
   <% end %>
-</ul>
+</table>

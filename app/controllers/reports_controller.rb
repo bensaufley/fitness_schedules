@@ -6,11 +6,14 @@ class ReportsController < ApplicationController
   
   def create
     trainer = Trainer.find_by_email(params[:report][:email])
-    redirect_to reports_show_path({trainer_id: trainer})
+    first_date = get_date_from_params(params, "start_date")
+    last_date = get_date_from_params(params, "end_date")
+    redirect_to reports_show_path({report: {trainer_id: trainer, start_date: first_date, end_date: last_date}})
   end
 
   def show
-    @trainer = Trainer.find(params[:trainer_id])
+    @trainer = Trainer.find(params[:report][:trainer_id])
+    @schedules = @trainer.schedules # write SQL query to limit by date in params
   end
   
 end
