@@ -15,6 +15,7 @@ body
 		top: 0
 		left: 0
 		width: 100%
+		min-width: 480px
 		height: 5.2em
 		border-bottom: 1px solid darken($orange,10%)
 		@include slight-gradient($orange)
@@ -38,13 +39,13 @@ body
 			text-transform: uppercase
 			margin: 0 auto
 			width: auto
-			padding: 0
+			padding: 0 20px
 			display: table
 			margin: 0 auto
 			@media screen and (min-width: 640px)
 				display: block
 				font-size: 1.2em
-				padding: 0 20px
+				width: auto
 			@media screen and (min-width: 1020px)
 				padding: 0
 				width: 940px
