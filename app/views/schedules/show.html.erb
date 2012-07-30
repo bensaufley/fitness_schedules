@@ -13,6 +13,7 @@
 			<td>Exercise</td>
 			<td>Weight or Intensity</td>
 			<td>Reps or Duration</td>
+			<td>Comments</td>
 		</tr>
 
 	<% @schedule.exercises.order(:circuit, :ex_order).each do |exercise| %>
@@ -22,6 +23,7 @@
     	<td><%= exercise.name %></td>
     	<td><%= exercise.weight_or_intensity %></td>
     	<td><%= exercise.reps_or_duration %></td>
+    	<td><%= exercise.comments %></td>
   	</tr>
   <% end %>
 </table>

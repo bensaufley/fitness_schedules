@@ -24,6 +24,9 @@
 		<%= exercise_form.label :reps_or_duration, "Reps/Duration" %>
 		<%= exercise_form.text_field :reps_or_duration %>
 		<br>
+		<%= exercise_form.label :comments, "Comments" %>
+		<%= exercise_form.text_area :comments %>
+		<br>
 		<%= exercise_form.link_to_remove "Remove Exercise" %>
 	<% end %>
 	
