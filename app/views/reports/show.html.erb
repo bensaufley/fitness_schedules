@@ -1,0 +1,23 @@
+<% provide(:title, "Report") %>
+
+
+<table>
+  <tr>
+    <td>Client</td>
+    <td>Trainer</td>
+    <td>Scheduled Date</td>
+    <td>Status</td>
+    <td>Date last updated</td>
+  </tr>
+  <% @schedules.each do |sched| %>
+    <tr>
+      <td><%= sched.client.name %></td>
+      <td><% if sched.client.trainer %>
+        <%= sched.client.trainer.name %>
+      <% end %></td>
+      <td><%= sched.scheduled_date %></td>
+      <td><%= how_rendered(sched) %></td>
+      <td><%= sched.updated_at %></td>
+    </tr>
+  <% end %>
+</table>
