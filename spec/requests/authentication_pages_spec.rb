@@ -83,6 +83,7 @@ describe 'Authentication Pages' do
 			describe 'when attempting to visit a protected page' do
 				before do
 					visit clients_path 
+          select "Trainer", :from => "user_type"
 					fill_in "Email", with: trainer.email
 					fill_in "Password", with: trainer.password
 					click_button "Sign in"
@@ -155,6 +156,20 @@ describe 'Authentication Pages' do
     end
   end
 	
+	describe 'for a completed/cancelled schedule page' do
+	  let(:client) { FactoryGirl.create(:client) }
+	  let(:trainer) { FactoryGirl.create(:trainer) }
+	  let(:schedule) { client.schedules.create(scheduled_date: Date.tomorrow) }
+	  before do 
+	    sign_in_trainer trainer
+	    trainer.clients << client
+	    schedule.rendered = true
+	    visit edit_schedule_path(schedule)
+	  end
+	  it { should have_selector('div.alert.alert-alert') }
+	end
+	    
+	
 	describe 'for new trainer page' do
 	  
 	  describe 'for admin' do
@@ -166,7 +181,7 @@ describe 'Authentication Pages' do
 	    end
 	    
 	    it { should have_selector('title', text: 'New') }
-	    end
+	  end
 	    
 	  describe 'for non-admin' do
 	    let(:trainer) { FactoryGirl.create(:trainer) }
@@ -179,5 +194,48 @@ describe 'Authentication Pages' do
 	  end
 	
 	end
+  
+  describe 'access to reporting pages' do
+    let(:trainer) { FactoryGirl.create(:trainer) }
+    let(:admin) { FactoryGirl.create(:trainer) }
+    
+    describe 'reports#new for non-admin' do
+      before do
+        admin.toggle(:admin)
+        sign_in_trainer trainer
+        visit new_report_path
+      end
+      
+      it { should have_content("not authorized") }
+    end
+    
+    describe 'reports#show for non-admin' do
+      before do
+        sign_in_trainer trainer
+        visit show_report_path
+      end
+      
+      it { should have_content("not authorized") }
+    end
+    
+    describe 'reports#new for admin' do
+      before do
+        sign_in_trainer admin
+        visit new_report_path
+      end
+      
+      it { should have_selector('input', value: "Generate Report") }
+    end
+      
+    describe 'reports#show for admin' do
+      before do
+        sign_in_trainer admin
+        visit new_report_path
+        click_button "Generate Report"
+      end
+      
+      it { should have_selector('td', text: "Client") }
+    end
+  end     	
 end	
 		
