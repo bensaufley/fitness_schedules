@@ -201,7 +201,6 @@ describe 'Authentication Pages' do
     
     describe 'reports#new for non-admin' do
       before do
-        admin.toggle(:admin)
         sign_in_trainer trainer
         visit new_report_path
       end
@@ -212,7 +211,7 @@ describe 'Authentication Pages' do
     describe 'reports#show for non-admin' do
       before do
         sign_in_trainer trainer
-        visit show_report_path
+        visit reports_show_path
       end
       
       it { should have_content("not authorized") }
@@ -220,6 +219,7 @@ describe 'Authentication Pages' do
     
     describe 'reports#new for admin' do
       before do
+        admin.toggle!(:admin)
         sign_in_trainer admin
         visit new_report_path
       end
@@ -228,10 +228,11 @@ describe 'Authentication Pages' do
     end
       
     describe 'reports#show for admin' do
+      let(:submit) { "Generate Report" }
       before do
         sign_in_trainer admin
         visit new_report_path
-        click_button "Generate Report"
+        click_button submit
       end
       
       it { should have_selector('td', text: "Client") }
