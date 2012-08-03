@@ -19,7 +19,12 @@ describe 'trainer pages' do
 	end
 	
 	describe 'new trainer page' do
-		before { visit new_trainer_path }
+	  let(:trainer) { FactoryGirl.create(:trainer) }
+		before do
+		  trainer.toggle!(:admin)
+		  sign_in_trainer trainer
+		  visit new_trainer_path 
+		end
 		let(:submit) { "Create my account" }
 		
 		describe 'with invalid information' do

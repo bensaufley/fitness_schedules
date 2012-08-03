@@ -12,8 +12,9 @@
 				<td>Circuit</td>
 				<td>Order</td>
 				<td>Exercise</td>
-				<td>Weight/Intensity</td>
-				<td>Reps/Duration</td>
+				<td>Weight or Intensity</td>
+				<td>Reps or Duration</td>
+				<td>Comments</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,11 +26,12 @@
 	    	<td><%= exercise.name %></td>
 	    	<td><%= exercise.weight_or_intensity %></td>
 	    	<td><%= exercise.reps_or_duration %></td>
+	    	<td><%= exercise.comments %></td>
 	  	</tr>
 	  <%	end
 		  else
 	  %>
-	  	<tr><td colspan="5">No circuits recorded yet.</td></tr>
+	  	<tr><td colspan="6">No circuits recorded yet.</td></tr>
 	  <% end %>
 	  </tbody>
 	</table>
