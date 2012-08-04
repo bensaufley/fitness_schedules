@@ -6,7 +6,7 @@
 <% end %>
 
 <ul><% @client.schedules.order("scheduled_date DESC").each do |schedule| %>
-	<li><%= link_to schedule.scheduled_date.strftime("%d %b %Y"), schedule_path(schedule) %> <%= schedule_complete(schedule) %></li>
+	<li><%= link_to schedule.scheduled_date.strftime("%d %b %Y"), schedule_path(schedule) %> with <%= schedule.trainer.name %> <%= schedule_complete(schedule) %></li>
 <% end %></ul>
 
 

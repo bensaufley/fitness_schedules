@@ -8,6 +8,7 @@
 	<p><%= f.link_to_add "Add Schedule", :schedules %></p>
 		
 	<%= f.fields_for :schedules do |schedule_form| %>
+    
 		<%= schedule_form.date_select :scheduled_date %> 
 		<%= schedule_form.link_to_remove "Remove" %>
 		
