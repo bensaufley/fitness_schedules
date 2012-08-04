@@ -1,7 +1,8 @@
 class Client < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation, :schedules_attributes
   has_secure_password
-  belongs_to :trainer
+  has_many :relationships
+  has_many :trainers, through: :relationships
   has_many :schedules
   
   accepts_nested_attributes_for :schedules, allow_destroy: true

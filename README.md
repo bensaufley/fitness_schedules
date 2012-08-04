@@ -14,7 +14,7 @@ A scheduling webapp to help trainers and clients collaborate and track their wor
 +	Write tests for sorting of schedules and exercises
 +	Tests for `edit_client_path` and `edit_schedule_path`
 	*	Failing - javascript? 
-+ Write tests for reporting
++ Write tests for reporting#show
 *	Paginate schedules list
 +	Reporting pages, accessible to admin only:
 	*	Schedules by Trainer
@@ -30,7 +30,6 @@ A scheduling webapp to help trainers and clients collaborate and track their wor
 	
 	## Notes from Meeting ##
   
-  + Comments box for exercises
   + Make Weight/Intensity and Reps/Duration number fields so can be graphed
   + Trainer/Client has_many relationships
   + Ability to clone schedules

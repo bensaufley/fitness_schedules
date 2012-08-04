@@ -1,13 +1,8 @@
 <%= will_paginate @clients %>
 <ul class="clients"><% @clients.order(:name).each do |client| %>
-	<li class="<%= client.trainer == current_user ? " training" : client.trainer.nil? ? "" : " disabled" %>">
-	<%- if session[:user_class] == Trainer
-			if client.trainer == nil  %>
-		<h3 class="client"><%= client.name %></h3>
-		<div class="options">
-			<%= link_to "Train this client", add_trainer_client_path(client), :class => "train" %> 
-		</div>
-	<%- 	elsif client.trainer == current_user %>
+	<li class="<%= client.trainers.include?(current_user) ? " training" : client.trainers == [] ? "" : " disabled" %>">
+	<%- if session[:user_class] == Trainer %>
+	  <%- if client.trainers.include? current_user %>
 		<%= link_to client.name, client_path(client), :class => "client" %>
 		<div class="options">
 			<%= link_to "Schedule", edit_client_path(client), :class => "schedule" %>
@@ -16,11 +11,15 @@
 	<%- 	else %>
 		<h3 class="client"><%= client.name %></h3>
 		<div class="options">
-			Client is being trained by another trainer.
+			<%= link_to "Train this client", add_trainer_client_path(client), :class => "train" %> 
 		</div>
 	<%-		end
 		else %>
 			<h3 class="client"><%= client.name %></h3>
-	<%-	end %>
+	<%- end %>
 	</li>
 <% end %></ul>
+
+
+
+

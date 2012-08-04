@@ -49,7 +49,7 @@ module SessionsHelper
 			if current_user.class == Client
 				redirect_to '/noauth' unless current_user == user_model.find_by_id(params[:id])
 			elsif current_user.class == Trainer
-				redirect_to '/noauth' unless current_user == user_model.find_by_id(params[:id]).trainer
+				redirect_to '/noauth' unless user_model.find_by_id(params[:id]).trainers.include?(current_user)
 			else
 				redirect_to '/noauth'
 			end
@@ -63,7 +63,7 @@ module SessionsHelper
 	  if current_user.class == Client
 	    redirect_to '/noauth' unless current_user == schedule.client
 	  elsif current_user.class == Trainer
-	    redirect_to '/noauth' unless current_user == schedule.client.trainer
+	    redirect_to '/noauth' unless schedule.client.trainers.include?(current_user)
 	  else
 	    redirect_to '/noauth'
 	  end
