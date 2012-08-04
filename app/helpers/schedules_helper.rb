@@ -17,5 +17,9 @@ module SchedulesHelper
       redirect_to schedule 
     end
   end
-    
+  
+  def add_trainer_id_to_new_schedule
+    params[:client][:schedules_attributes].first[1][:trainer_id] = current_user.id
+  end
+  
 end

@@ -10,6 +10,10 @@
 	<%= f.fields_for :schedules do |schedule_form| %>
 		<%= schedule_form.date_select :scheduled_date %> 
 		<%= schedule_form.link_to_remove "Remove" %>
+		
+		<%= schedule_form.hidden_field :trainer_id %>
+		<%= hidden_field_tag :trainer_id %>
+		
 	<% end %>
 	
 	<br><%= f.submit "Create", class: 'btn btn-large btn-primary' %></br>

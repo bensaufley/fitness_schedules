@@ -31,6 +31,7 @@ class ClientsController < ApplicationController
 	
 	def update
 		@client = Client.find(params[:id])
+		add_trainer_id_to_new_schedule
 		if @client.update_attributes(params[:client])
 			flash[:notice] = "Successfully added schedule"
 			redirect_to @client

@@ -63,7 +63,7 @@ module SessionsHelper
 	  if current_user.class == Client
 	    redirect_to '/noauth' unless current_user == schedule.client
 	  elsif current_user.class == Trainer
-	    redirect_to '/noauth' unless schedule.client.trainers.include?(current_user)
+	    redirect_to '/noauth' unless schedule.trainer == current_user
 	  else
 	    redirect_to '/noauth'
 	  end
