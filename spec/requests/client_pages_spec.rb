@@ -6,8 +6,10 @@ describe 'Client pages' do
 	
 	describe 'profile page' do
 		let!(:client) { FactoryGirl.create(:client) }
-		let(:schedule) { client.schedules.create(scheduled_date: (Date.today + 1), trainer_id: 1) }
+		let!(:trainer) { FactoryGirl.create(:trainer) }
+		let(:schedule) { client.schedules.create(scheduled_date: (Date.today + 1), trainer_id: trainer.id) }
 		before do
+		  trainer.clients << client
 		  client.schedules << schedule
 			sign_in_client(client)
 			visit client_path(client)

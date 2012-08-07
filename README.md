@@ -31,6 +31,5 @@ A scheduling webapp to help trainers and clients collaborate and track their wor
 	## Notes from Meeting ##
   
   + Make Weight/Intensity and Reps/Duration number fields so can be graphed
-  + Trainer/Client has_many relationships
   + Ability to clone schedules
   
