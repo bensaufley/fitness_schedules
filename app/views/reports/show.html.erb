@@ -12,8 +12,8 @@
   <% @schedules.each do |sched| %>
     <tr>
       <td><%= sched.client.name %></td>
-      <td><% if sched.client.trainer %>
-        <%= sched.client.trainer.name %>
+      <td><% if sched.trainer %>
+        <%= sched.trainer.name %>
       <% end %></td>
       <td><%= sched.scheduled_date %></td>
       <td><%= how_rendered(sched) %></td>
