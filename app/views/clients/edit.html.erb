@@ -20,10 +20,12 @@
 						<%= schedule_form.date_select :scheduled_date, { :order => [:month, :day, :year] }, :class => "date_select" %>
 					</div>
 					<%= schedule_form.link_to_remove "Remove", :class => "remove" %>
+					<%= schedule_form.hidden_field :trainer_id %>
+					<%= hidden_field_tag :trainer_id %>
 				</div>
 			<% end %>
 		</div>
-		
+	
 		<div class="buttons">
 			<%= f.submit "Save", :class => 'save' %>
 			<%= link_to "Cancel", @client, :class => "cancel", :confirm => "Are you sure you wish to cancel? All unsaved changes will be lost." %>

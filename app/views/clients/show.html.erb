@@ -7,6 +7,6 @@
 	<% end %>
 	
 	<ul class="client_sessions"><% @client.schedules.order("scheduled_date DESC").each do |schedule| %>
-		<li><%= link_to schedule.scheduled_date.strftime("%B %d, %Y"), schedule_path(schedule), :class => "session" %> <%= schedule_complete(schedule) %></li>
+		<li><%= link_to schedule.scheduled_date.strftime("%B %d, %Y"), schedule_path(schedule), :class => "session" %> with <%= schedule.trainer.name %> <%= schedule_complete(schedule) %></li>
 	<% end %></ul>
 </section>

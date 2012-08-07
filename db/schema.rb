@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730104818) do
+ActiveRecord::Schema.define(:version => 20120804123328) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20120730104818) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
-    t.integer  "trainer_id"
   end
 
   add_index "clients", ["email"], :name => "index_clients_on_email", :unique => true
@@ -36,12 +35,24 @@ ActiveRecord::Schema.define(:version => 20120730104818) do
     t.string   "comments"
   end
 
+  create_table "relationships", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "trainer_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "relationships", ["client_id", "trainer_id"], :name => "index_relationships_on_client_id_and_trainer_id", :unique => true
+  add_index "relationships", ["client_id"], :name => "index_relationships_on_client_id"
+  add_index "relationships", ["trainer_id"], :name => "index_relationships_on_trainer_id"
+
   create_table "schedules", :force => true do |t|
     t.date     "scheduled_date"
     t.boolean  "rendered"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "client_id"
+    t.integer  "trainer_id"
   end
 
   create_table "trainers", :force => true do |t|

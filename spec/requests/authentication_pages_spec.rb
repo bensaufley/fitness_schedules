@@ -132,11 +132,34 @@ describe 'Authentication Pages' do
 		end
 	end
 	
-	describe 'for a schedule page not owned by the trainer (client.trainer)' do
+	describe 'for schedule page owned by client and trainer' do
+	  let(:client) { FactoryGirl.create(:client) }
+	  let(:trainer) { FactoryGirl.create(:trainer) }
+	  let(:schedule) { client.schedules.create(scheduled_date: Date.tomorrow, trainer_id: trainer.id) }
+	  
+	  describe 'client' do
+	    before do
+  	    sign_in_client client	  
+  	    visit schedule_path(schedule)
+  	  end
+  	  it { should have_selector('td', text: "Circuit") }
+  	end
+  	
+  	describe 'trainer' do
+  	  before do
+  	    trainer.clients << client
+  	    sign_in_trainer trainer
+  	    visit schedule_path(schedule)
+  	  end
+  	  it { should have_selector('td', text: "Circuit") }
+  	end
+  end
+  	  
+	describe 'for a schedule page not owned by (client.trainer)' do
 	  let(:client) { FactoryGirl.create(:client) }
 	  let(:trainer) { FactoryGirl.create(:trainer) }
 	  let(:other_client) { FactoryGirl.create(:client) }
-	  let(:schedule) { other_client.schedules.create(scheduled_date: Date.tomorrow) }
+	  let(:schedule) { other_client.schedules.create(scheduled_date: Date.tomorrow, trainer_id: (trainer.id + 1)) }
 	  
 	  describe 'client' do
       before do
@@ -159,7 +182,7 @@ describe 'Authentication Pages' do
 	describe 'for a completed/cancelled schedule page' do
 	  let(:client) { FactoryGirl.create(:client) }
 	  let(:trainer) { FactoryGirl.create(:trainer) }
-	  let(:schedule) { client.schedules.create(scheduled_date: Date.tomorrow) }
+	  let(:schedule) { client.schedules.create(scheduled_date: Date.tomorrow, trainer_id: trainer.id) }
 	  before do 
 	    sign_in_trainer trainer
 	    trainer.clients << client
@@ -201,7 +224,6 @@ describe 'Authentication Pages' do
     
     describe 'reports#new for non-admin' do
       before do
-        admin.toggle(:admin)
         sign_in_trainer trainer
         visit new_report_path
       end
@@ -212,7 +234,7 @@ describe 'Authentication Pages' do
     describe 'reports#show for non-admin' do
       before do
         sign_in_trainer trainer
-        visit show_report_path
+        visit reports_show_path
       end
       
       it { should have_content("not authorized") }
@@ -220,6 +242,7 @@ describe 'Authentication Pages' do
     
     describe 'reports#new for admin' do
       before do
+        admin.toggle!(:admin)
         sign_in_trainer admin
         visit new_report_path
       end
@@ -228,10 +251,11 @@ describe 'Authentication Pages' do
     end
       
     describe 'reports#show for admin' do
+      let(:submit) { "Generate Report" }
       before do
         sign_in_trainer admin
         visit new_report_path
-        click_button "Generate Report"
+        click_button submit
       end
       
       it { should have_selector('td', text: "Client") }

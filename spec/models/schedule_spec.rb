@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Schedule do
 
 		let(:client) { FactoryGirl.create(:client) }
-		before { @schedule = client.schedules.build(scheduled_date: '1/1/2020') }
+		before { @schedule = client.schedules.build(scheduled_date: '1/1/2020', trainer_id: 1) }
 
 	subject { @schedule }
 	
@@ -12,7 +12,7 @@ describe Schedule do
 	it { should respond_to(:rendered) }
 	it { should respond_to(:client) }
 	it { should respond_to(:exercises) }
-	it { should respond_to(:trainers) }
+	it { should respond_to(:trainer) }
 	
 	describe 'accessible attributes' do
 		it 'should not allow access to client_id' do
@@ -34,4 +34,10 @@ describe Schedule do
 		before { @schedule.scheduled_date = '1/1/1970' }
 		it { should_not be_valid }
 	end
+	
+	describe "when trainer_id is not present" do
+	  before { @schedule.trainer_id = nil }
+	  it { should_not be_valid }
+	end
+	
 end

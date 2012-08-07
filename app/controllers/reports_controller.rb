@@ -15,10 +15,10 @@ class ReportsController < ApplicationController
     @trainer = Trainer.find_by_id(params[:report][:trainer_id])
     start_date = params[:report][:start_date].to_date
     end_date = params[:report][:end_date].to_date
-    @schedules = Schedule.find(:all, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day })
+    @schedules = Schedule.order(params[:sort]).find(:all, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day })
     if @trainer
       client_ids = @trainer.client_ids
-      @schedules = Schedule.find(:all, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :client_id => client_ids })
+      @schedules = Schedule.order(params[:sort]).find(:all, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :client_id => client_ids })
     end
   end
   

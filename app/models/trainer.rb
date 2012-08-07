@@ -1,8 +1,9 @@
 class Trainer < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
-  has_many :clients
-  has_many :schedules, :through => :clients
+  has_many :relationships
+  has_many :clients, through: :relationships
+  has_many :schedules
   
   validates :name, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
