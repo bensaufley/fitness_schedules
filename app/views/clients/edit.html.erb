@@ -9,6 +9,8 @@
 		
 	<%= f.fields_for :schedules do |schedule_form| %>
     
+    <%= schedule_form.object.trainer.name %>
+    
 		<%= schedule_form.date_select :scheduled_date %> 
 		<%= schedule_form.link_to_remove "Remove" %>
 		
@@ -19,3 +21,4 @@
 	
 	<br><%= f.submit "Create", class: 'btn btn-large btn-primary' %></br>
 <% end %>
+

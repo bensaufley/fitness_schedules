@@ -32,4 +32,5 @@ A scheduling webapp to help trainers and clients collaborate and track their wor
   
   + Make Weight/Intensity and Reps/Duration number fields so can be graphed
   + Ability to clone schedules
+  + Label fields on Client#edit
   
