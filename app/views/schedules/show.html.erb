@@ -6,6 +6,8 @@
 	<%= link_to 'Edit Schedule', edit_schedule_path(@schedule) %>
 <% end %>
 
+<%= link_to "Clone Schedule", controller: "schedules", action: "duplicate", id: @schedule.id %>
+
 <table border="1">
 		<tr>
 			<td>Circuit</td>

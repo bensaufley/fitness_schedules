@@ -8,6 +8,15 @@ class SchedulesController < ApplicationController
   	@schedule = Schedule.find(params[:id])
   end
   
+  def duplicate
+    schedule = Schedule.find(params[:id])
+    new_schedule = schedule.dup
+    new_schedule.scheduled_date = Date.today
+    new_schedule.exercises << schedule.exercises.collect { |ex| ex.dup }
+    new_schedule.save
+    redirect_to edit_schedule_path(new_schedule)
+  end
+  
   def edit
   	@schedule = Schedule.find(params[:id])
   end
