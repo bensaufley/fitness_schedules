@@ -1,0 +1,15 @@
+@import "compass/reset"
+@import "shared"
+
+body
+	font-size: 62.5%
+	&, input, select
+		font-weight: 200
+		font-family: 'Avenir Lt Std','century gothic',CenturyGothic,Verdana,sans-serif
+	
+	a
+		&:link, &:visited
+			text-decoration: none
+			color: $orange
+		&:hover
+			color: lighten($orange,25%)
