@@ -9,7 +9,7 @@
 		
 	<%= f.fields_for :schedules do |schedule_form| %>
     
-    <%= schedule_form.object.trainer.name %>
+    <%= schedule_form.object.trainer_id == current_user.id ? "Schedule owned by you" : "Scheduled not owned by you" %>
     
 		<%= schedule_form.date_select :scheduled_date %> 
 		<%= schedule_form.link_to_remove "Remove" %>
