@@ -1,4 +1,5 @@
 <% provide(:title, @client.name) %>
+
 <section class="client">
 	<h2><%= link_to @client.name, @client %></h2>
 	
@@ -16,6 +17,7 @@
 		<div id="current_sessions">
 			<%= f.fields_for :schedules do |schedule_form| %>
 				<div class="row">
+          <%= schedule_form.object.trainer_id == current_user.id ? "Schedule owned by you" : "Scheduled not owned by you" %>
 					<div class="date_select_block">
 						<%= schedule_form.date_select :scheduled_date, { :order => [:month, :day, :year] }, :class => "date_select" %>
 					</div>

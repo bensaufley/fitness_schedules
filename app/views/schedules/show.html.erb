@@ -1,7 +1,9 @@
 <% provide(:title, @schedule.scheduled_date) %>
+
 <section class="session">
 	<h2>Workout for <%= link_to(@schedule.client.name, client_path(@schedule.client)) %></h2>
 	<h3><%= @schedule.scheduled_date.strftime("%A, %B %e, %Y") %></h3>
+  <%= link_to "Clone Schedule", controller: "schedules", action: "duplicate", id: @schedule.id %>
 	<% if session[:user_class] == Trainer && @schedule.rendered.nil? %>
 		<%= link_to 'Edit Session', edit_schedule_path(@schedule), :class => "edit_session" %>
 	<% end %>
@@ -35,6 +37,7 @@
 	  <% end %>
 	  </tbody>
 	</table>
+
 	
 	<% if @schedule.rendered.nil? %>
 		<h3>Indicate completion of this session</h3>

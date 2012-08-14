@@ -4,8 +4,8 @@ class Exercise < ActiveRecord::Base
   belongs_to :schedule
   
   validates :name, presence: true
-  validates :reps_or_duration, presence: true
   validates :schedule_id, presence: true
-  validates :weight_or_intensity, presence: true
+  validates :weight_or_intensity, numericality: true, allow_blank: true
+  validates :reps_or_duration, numericality: true, allow_blank: true
   
 end
