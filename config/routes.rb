@@ -16,6 +16,7 @@ FitnessSchedules::Application.routes.draw do
   resources :schedules do
   	member do
   		put 'complete'
+  		get 'duplicate'
   	end
   end
   resources :reports

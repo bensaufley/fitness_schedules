@@ -1,21 +1,36 @@
 <% provide(:title, @client.name) %>
-<h2><%= link_to @client.name, @client %></h2>
 
-<%= render :partial => 'shared/errors', :locals => { :user => @client } %>
-
-<%= nested_form_for @client do |f| %>
-
-	<p><%= f.link_to_add "Add Schedule", :schedules %></p>
-		
-	<%= f.fields_for :schedules do |schedule_form| %>
-    
-		<%= schedule_form.date_select :scheduled_date %> 
-		<%= schedule_form.link_to_remove "Remove" %>
-		
-		<%= schedule_form.hidden_field :trainer_id %>
-		<%= hidden_field_tag :trainer_id %>
-		
-	<% end %>
+<section class="client">
+	<h2><%= link_to @client.name, @client %></h2>
 	
-	<br><%= f.submit "Create", class: 'btn btn-large btn-primary' %></br>
-<% end %>
+	<%= render :partial => 'shared/errors', :locals => { :user => @client } %>
+	
+	<%= nested_form_for @client do |f| %>
+		<div class="buttons">
+			<%= f.submit "Save", :class => 'save' %>
+			<%= link_to "Cancel", @client, :class => "cancel", :confirm => "Are you sure you wish to cancel? All unsaved changes will be lost." %>
+		</div>
+		<div id="add_sessions">
+			<%= f.link_to_add "Add Session", :schedules, :class => "add_session" %>
+		</div>
+		<h3>Current Sessions:</h3>
+		<div id="current_sessions">
+			<%= f.fields_for :schedules do |schedule_form| %>
+				<div class="row">
+          <%= schedule_form.object.trainer_id == current_user.id ? "Schedule owned by you" : "Scheduled not owned by you" %>
+					<div class="date_select_block">
+						<%= schedule_form.date_select :scheduled_date, { :order => [:month, :day, :year] }, :class => "date_select" %>
+					</div>
+					<%= schedule_form.link_to_remove "Remove", :class => "remove" %>
+					<%= schedule_form.hidden_field :trainer_id %>
+					<%= hidden_field_tag :trainer_id %>
+				</div>
+			<% end %>
+		</div>
+	
+		<div class="buttons">
+			<%= f.submit "Save", :class => 'save' %>
+			<%= link_to "Cancel", @client, :class => "cancel", :confirm => "Are you sure you wish to cancel? All unsaved changes will be lost." %>
+		</div>
+	<% end %>
+</section>

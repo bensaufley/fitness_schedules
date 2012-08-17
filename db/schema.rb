@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120804123328) do
+ActiveRecord::Schema.define(:version => 20120814105641) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(:version => 20120804123328) do
     t.integer  "circuit"
     t.integer  "ex_order"
     t.string   "name"
-    t.string   "weight_or_intensity"
-    t.string   "reps_or_duration"
+    t.decimal  "weight_or_intensity"
+    t.decimal  "reps_or_duration"
     t.integer  "schedule_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
