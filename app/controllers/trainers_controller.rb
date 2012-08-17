@@ -11,7 +11,7 @@ class TrainersController < ApplicationController
   	@trainer = Trainer.new(params[:trainer])
   	if @trainer.save
   		flash[:success] = "Account successfully created"
-  		redirect_to @trainer
+  		redirect_to new_trainer_path
   	else
   		render 'new'
   	end
