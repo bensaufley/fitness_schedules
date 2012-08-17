@@ -25,7 +25,7 @@ class ReportsController < ApplicationController
     end_date = params[:report][:end_date].to_date
     if sort_key.nil?
       Schedule.find(:all, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :trainer_id => trainer_id })
-    elsif sort_key == "trainers" || sort_key == "clients"
+    elsif sort_key == "trainer" || sort_key == "client"
       Schedule.find(:all, :include => sort_key, :order => "#{sort_key}.name", :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :trainer_id => trainer_id })
     elsif sort_key == "scheduled_date" || sort_key == "rendered" || sort_key == "updated_at"
       Schedule.find(:all, :order => sort_key, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :trainer_id => trainer_id })
