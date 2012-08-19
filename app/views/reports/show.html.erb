@@ -1,13 +1,13 @@
 <% provide(:title, "Report") %>
-
+<% params[:direc] == "down" ? direction = "up" : direction = "down" %>
 
 <table>
   <tr>
-    <td><%= link_to "Client", { sort: "client", report: params[:report] } %></td>
-    <td><%= link_to "Trainer", { sort: "trainer", report: params[:report] } %></td>
-    <td><%= link_to "Scheduled Date", { sort: "scheduled_date", report: params[:report] } %></td>
-    <td><%= link_to "Status", { sort: "rendered", report: params[:report] } %></td>
-    <td><%= link_to "Date last updated", { sort: "updated_at", report: params[:report] } %></td>
+    <td><%= link_to "Client", { sort: "client", direc: direction, report: params[:report] } %></td>
+    <td><%= link_to "Trainer", { sort: "trainer", direc: direction, report: params[:report] } %></td>
+    <td><%= link_to "Scheduled Date", { sort: "scheduled_date", direc: direction, report: params[:report] } %></td>
+    <td><%= link_to "Status", { sort: "rendered", direc: direction, report: params[:report] } %></td>
+    <td><%= link_to "Date last updated", { sort: "updated_at", direc: direction, report: params[:report] } %></td>
   </tr>
   <% @schedules.each do |sched| %>
     <tr>

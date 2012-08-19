@@ -12,28 +12,35 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @schedules = sorted_schedules(params) 
+    sort_key = params[:sort]
+    sort_order = params[:direc]
+    order_by = sort_string(sort_key, sort_order)
+    params[:report][:trainer_id].blank? ? trainer_id = Trainer.pluck(:id) : trainer_id = Trainer.find_by_id(params[:report][:trainer_id]).id
+    start_date = params[:report][:start_date].to_date
+    end_date = params[:report][:end_date].to_date
+    @schedules = Schedule.find(:all, :include => [:client, :trainer], :order => order_by, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :trainer_id => trainer_id })
   end
   
   private
   
-  def sorted_schedules(params)
-    sort_key = params[:sort]
-    # sort_order = params[:sort][1]
-    params[:report][:trainer_id].blank? ? trainer_id = Trainer.pluck(:id) : trainer_id = Trainer.find_by_id(params[:report][:trainer_id]).id
-    start_date = params[:report][:start_date].to_date
-    end_date = params[:report][:end_date].to_date
-    if sort_key.nil?
-      Schedule.find(:all, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :trainer_id => trainer_id })
-    elsif sort_key == "trainer" || sort_key == "client"
-      Schedule.find(:all, :include => sort_key, :order => "#{sort_key}.name", :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :trainer_id => trainer_id })
-    elsif sort_key == "scheduled_date" || sort_key == "rendered" || sort_key == "updated_at"
-      Schedule.find(:all, :order => sort_key, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :trainer_id => trainer_id })
-    else 
-      Schedule.find(:all, :conditions => { :scheduled_date => start_date.beginning_of_day..end_date.end_of_day, :trainer_id => trainer_id })
+  def sort_string(key, dir)
+    if dir == "up"
+      sort_order = "ASC"
+    elsif dir == "down"
+      sort_order = "DESC"
+    else
+      sort_order = "DESC"
     end
-    # If Client or Trainer, need to 'join' that table: @schedules = Schedule.find(:all, :include => :trainers, :order =>'trainers.name')
-    # desc or asc
-  end
+    if key == "trainer" || key == "client"
+      sort_by = "#{key}s.name #{sort_order}"
+    elsif key =="scheduled_date" || key == "rendered" || key == "updated_at"
+      sort_by = "#{key} #{sort_order}"
+    else
+      sort_by = "scheduled_date DESC"
+    end
+    sort_by
+  end 
+    
   
 end
+
