@@ -16,11 +16,6 @@ A scheduling webapp to help trainers and clients collaborate and track their wor
 	*	Failing - javascript? 
 + Write tests for reporting#show
 *	Paginate schedules list
-+	Reporting pages, accessible to admin only:
-	*	Schedules by Trainer
-		- Need to make sortable
-	* ALL schedules 
-	  - move @schedules.each table in reports_controller#show to partial
 +	Styling
 	*	CSS media queries
 		-	Implemented in `custom.sass`, which covers most general cases
