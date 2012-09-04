@@ -1,5 +1,5 @@
 @import "compass"
-$pie-behavior: url("/assets/PIE.htc")
+// $pie-behavior: url("/assets/PIE.htc")
 @import "compass/css3/pie"
 @import "compass/utilities/general/clearfix"
 
@@ -10,4 +10,3 @@ $cream:  #f0e9e2
 @mixin slight-gradient($color,$from: bottom, $dif: 10%)
 	background-color: $color
 	@include background-image(linear-gradient($from,darken($color,$dif/2),lighten($color,$dif/2)))
-	@include pie

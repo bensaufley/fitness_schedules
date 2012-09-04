@@ -21,7 +21,6 @@ body
 		border-bottom: 1px solid darken($orange,10%)
 		@include slight-gradient($orange)
 		@include box-shadow(0 2px 8px transparentize(darken($orange,40%),.5))
-		@include pie
 		z-index: 5000
 		position: fixed
 		@media screen and (max-width: 640px)
@@ -34,7 +33,6 @@ body
 			color: #fff
 			font-weight: 200
 			@include text-shadow(0 1px 5px darken($orange,20%))
-			@include pie
 		nav
 			height: 1em
 			text-transform: uppercase
@@ -109,7 +107,6 @@ body
 		padding: 2.3em 20px 20px
 		width: 940px
 		@include box-shadow(0 0 15px mix($cream,$brown,25%))
-		@include pie
 		@media screen and (max-width: 640px)
 			padding: 2.8em 20px 20px
 			font-size: 1.4em
@@ -122,7 +119,6 @@ body
 			border-width: 1px
 			font-weight: bold
 			@include border-radius(4px)
-			@include pie
 			@media screen and (min-width: 640px)
 				width: 440px
 				margin: 1em auto
@@ -143,7 +139,6 @@ body
 			border-bottom: 1px solid lighten($orange,25%)
 			margin: 0 0 .8em
 			@include background-image(linear-gradient(bottom,lighten($orange,40%),#fff 50%))
-			@include pie
 		h3
 			text-align: center
 			font-size: 1.2em
@@ -199,7 +194,6 @@ body
 						@include text-shadow(0 -1px 3px #fff)
 						@include background(rgba(0,0,0,.05) linear-gradient(bottom,rgba(0,0,0,.1),rgba(0,0,0,0.0)))
 						@include border-radius(4px)
-						@include pie
 						&:hover
 							@include background(rgba(0,0,0,.025))
 							@include text-shadow(0 0 5px #fff)
@@ -218,7 +212,6 @@ body
 		font-size: 1.2em
 		padding: 20px 0
 		@include background-image(linear-gradient(bottom,$brown,lighten($brown,5%)))
-		@include pie
 		.club_link, .club_link:visited
 			display: block
 			background-position: 50% 0

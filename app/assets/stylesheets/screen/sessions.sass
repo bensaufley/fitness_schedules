@@ -25,7 +25,6 @@ section#signin
 			cursor: pointer
 			@include transition(all .2s)
 			@include background(#ccc linear-gradient(bottom,#ccc,#eee))
-			@include pie
 			&#trainer
 				@include border-radius(4px 0 0 4px)
 			&#client
@@ -74,7 +73,6 @@ section#signin
 			color: #666
 			@include background(#ccc linear-gradient(top,#ccc,#eee))
 			@include border-radius(4px 0 0 4px)
-			@include pie
 			&:hover
 				color: #333
 				@include background(#ccc linear-gradient(top,#ddd,#fff))
@@ -105,7 +103,6 @@ section#signin
 		@include box-shadow(0 -2px 3px darken($orange,15%) inset)
 		@include background($orange linear-gradient(bottom,darken($orange,5%),lighten($orange,5%)))
 		@include text-shadow(0 2px 4px darken($orange,20%))
-		@include pie
 		&:hover
 			@include box-shadow(0 -3px 3px darken($orange,15%) inset)
 			@include background(lighten($orange,5%) linear-gradient(bottom,$orange,lighten($orange,15%)))
